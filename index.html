@@ -6,22 +6,22 @@
   <title>GlassChat — Elegant, High-Privacy Mobile Messenger</title>
   
   <!-- Consumer SEO Meta Tags -->
-  <meta name="description" content="GlassChat is a stunning, high-privacy chat application for Android. Featuring frosted-glass visuals, emergency Do-Not-Disturb bypass, real-time screenshot protection, and vanishing private chats.">
-  <meta name="keywords" content="GlassChat, Android Chat App, Private Messenger, Screenshot Protection, Stealth Notifications, Vanishing Chats, Secure Chat App">
+  <meta name="description" content="GlassChat is a stunning, high-privacy chat application for Android. Featuring frosted-glass visuals, WebRTC P2P audio & video calling, hardware video compression, emergency DND bypass, and real-time alarm synchronization.">
+  <meta name="keywords" content="GlassChat, Android Chat App, Private Messenger, WebRTC Audio Call, WebRTC Video Call, Alarm Sync, DND Bypass, Vanish Mode, Screenshot Protection, Secure Chat App">
   <meta name="author" content="Nityam Kaushik">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://glassschat.netlify.app/">
+  <meta property="og:url" content="https://nityamkaushik.github.io/GlassChat-release/">
   <meta property="og:title" content="GlassChat — Elegant, High-Privacy Mobile Messenger">
-  <meta property="og:description" content="Experience premium messaging with gorgeous glass aesthetics. Protect your chats with screenshot block alerts, stealth notifications, and vanishing private modes.">
+  <meta property="og:description" content="Experience premium messaging with gorgeous glass aesthetics. Protect your chats with screenshot shields, WebRTC audio/video calls, smart alarm synchronization, stealth notifications, and vanishing private modes.">
   <meta property="og:image" content="./source/hero_mockup.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://glassschat.netlify.app/">
+  <meta property="twitter:url" content="https://nityamkaushik.github.io/GlassChat-release/">
   <meta property="twitter:title" content="GlassChat — Elegant, High-Privacy Mobile Messenger">
-  <meta property="twitter:description" content="Experience premium messaging with gorgeous glass aesthetics. Protect your chats with screenshot block alerts, stealth notifications, and vanishing private modes.">
+  <meta property="twitter:description" content="Experience premium messaging with gorgeous glass aesthetics. Protect your chats with screenshot shields, WebRTC audio/video calls, smart alarm synchronization, stealth notifications, and vanishing private modes.">
   <meta property="twitter:image" content="./source/hero_mockup.png">
 
   <!-- Stylesheet -->
@@ -61,7 +61,7 @@
         <div class="hero-subtitle">The Ultimate Private Messenger</div>
         <h1 class="gradient-text">Chat in a Beautiful, Secure Space</h1>
         <p class="hero-description">
-          GlassChat combines stunning, translucent glass-style visuals with absolute privacy. Take complete control of your social space with screenshot shields, silent whispers, emergency alerts, and ghost modes that leave no digital trace.
+          GlassChat combines stunning, translucent glass-style visuals with absolute privacy. Take complete control of your social space with screenshot shields, direct WebRTC peer-to-peer calling, silent whispers, emergency alerts, and ghost modes that leave no digital trace.
         </p>
         <div class="hero-buttons">
           <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-primary" id="hero-download-btn">Download Instantly</a>
@@ -86,69 +86,69 @@
       </p>
       
       <div class="features-grid">
-        <!-- Feature 1: DND Bypass (Emergency Alert) -->
+        <!-- Feature 1: Emergency DND Bypass (Sending Alarm) -->
         <div class="feature-card" id="feat-dnd-bypass">
           <div class="feature-icon-wrapper">
             <i data-lucide="bell-ring"></i>
           </div>
           <h3 class="feature-title">Emergency DND Bypass</h3>
           <p class="feature-desc">
-            When it's an absolute emergency, GlassChat lets your urgent notifications pierce through system silence or Do-Not-Disturb (DND) modes. Never miss crucial family alerts or late-night emergencies again.
+            When life demands immediate attention, send an emergency alarm ping. GlassChat pierces through system silent and Do-Not-Disturb (DND) modes, triggering a direct, hardware-level audio alarm for life-or-death contact.
           </p>
         </div>
 
-        <!-- Feature 2: Subtle Stealth Alerts -->
-        <div class="feature-card" id="feat-stealth-alerts">
+        <!-- Feature 2: Smart Alarm Sync Features -->
+        <div class="feature-card" id="feat-alarm-sync">
           <div class="feature-icon-wrapper">
-            <i data-lucide="volume-x"></i>
+            <i data-lucide="refresh-cw"></i>
           </div>
-          <h3 class="feature-title">Subtle Stealth Alerts</h3>
+          <h3 class="feature-title">Smart Priority Alarm Sync</h3>
           <p class="feature-desc">
-            Stay updated in business meetings, quiet libraries, or public spaces. GlassChat's low-volume whispers deliver muted, highly discreet notification sounds that keep you updated without drawing a single eye.
+            Coordinate alarms and alert schedules effortlessly. GlassChat runs background synchronization routines using custom SQLite alarm DAOs and receiver schedules, keeping priority alert profiles in perfect real-time sync.
           </p>
         </div>
 
-        <!-- Feature 3: Anti-Screenshot Shield -->
+        <!-- Feature 3: Stealth Peer-to-Peer Calls (Video & Audio) -->
+        <div class="feature-card" id="feat-webrtc-calls">
+          <div class="feature-icon-wrapper">
+            <i data-lucide="phone-call"></i>
+          </div>
+          <h3 class="feature-title">Encrypted P2P Calls</h3>
+          <p class="feature-desc">
+            Connect via crystal-clear audio and video calling. By utilizing peer-to-peer WebRTC connections with secure signaling handshakes, call streams establish direct node-to-node links, bypassing central storage entirely.
+          </p>
+        </div>
+
+        <!-- Feature 4: Vanish Mode (Ghost Chats) -->
+        <div class="feature-card" id="feat-vanish-mode">
+          <div class="feature-icon-wrapper">
+            <i data-lucide="ghost"></i>
+          </div>
+          <h3 class="feature-title">True Vanish Mode</h3>
+          <p class="feature-desc">
+            Leave zero trace. Ghost private chats shred all records on both ends the moment you close the session. All texts, temporary images, and audio voice files are permanently cleared from local databases and caches.
+          </p>
+        </div>
+
+        <!-- Feature 5: Anti-Screenshot Shield -->
         <div class="feature-card" id="feat-ss-shield">
           <div class="feature-icon-wrapper">
             <i data-lucide="eye-off"></i>
           </div>
           <h3 class="feature-title">Anti-Screenshot Shield</h3>
           <p class="feature-desc">
-            Your conversations are personal. GlassChat actively monitors and blocks or alerts you if the recipient attempts to take a screenshot of your chat bubbles or shared media. No unauthorized copies, ever.
+            Protect your media from leaks. By deploying custom hardware-level OS Secure flags and screen surface blockers, GlassChat prevents recipients from saving screenshots or screen recordings of your private chat bubbles.
           </p>
         </div>
 
-        <!-- Feature 4: Ghost Private Modes -->
-        <div class="feature-card" id="feat-ghost-mode">
+        <!-- Feature 6: On-the-Fly HD Video Compression -->
+        <div class="feature-card" id="feat-video-compression">
           <div class="feature-icon-wrapper">
-            <i data-lucide="ghost"></i>
+            <i data-lucide="zap"></i>
           </div>
-          <h3 class="feature-title">Ghost Private Modes</h3>
+          <h3 class="feature-title">Hardware-Level Compression</h3>
           <p class="feature-desc">
-            Need absolute secrecy? Open temporary ghost chats that store nothing on your device. Once closed, all texts, images, and voice recordings vanish completely, leaving zero traces or recovery paths.
-          </p>
-        </div>
-
-        <!-- Feature 5: One-Click Stalker Block -->
-        <div class="feature-card" id="feat-stalker-block">
-          <div class="feature-icon-wrapper">
-            <i data-lucide="shield-alert"></i>
-          </div>
-          <h3 class="feature-title">One-Click Block Control</h3>
-          <p class="feature-desc">
-            Instantly freeze any unwanted contacts. Tapping block severs connection immediately: they can't message you, they won't see your online status, and they are completely blacklisted from your digital presence.
-          </p>
-        </div>
-
-        <!-- Feature 6: Elegant Visual Polish -->
-        <div class="feature-card" id="feat-glass-look">
-          <div class="feature-icon-wrapper">
-            <i data-lucide="sparkles"></i>
-          </div>
-          <h3 class="feature-title">Premium Translucent UI</h3>
-          <p class="feature-desc">
-            A visual masterpiece for your eyes. Enjoy fluid frosted glass cards, dynamic light-refracting dark themes, custom blurred backgrounds, and micro-animations that make typing feel alive.
+            Share heavy media directories in milliseconds. GlassChat employs custom, hardware-accelerated video compressors directly on your device, shrinking files before transmission to save data.
           </p>
         </div>
       </div>
@@ -177,10 +177,10 @@
         <!-- Card 2 -->
         <div style="background: rgba(12, 18, 32, 0.6); padding: 40px 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: left;">
           <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--cyan); display: flex; align-items: center; gap: 10px;">
-            <i data-lucide="lock"></i> Device Vault
+            <i data-lucide="lock"></i> Room SQLite Local Storage
           </h3>
           <p style="font-size: 1rem; color: var(--text-secondary);">
-            If someone picks up your phone, they can't access your history. GlassChat database storage is fully locked, protecting your secrets against physical hardware theft.
+            If someone picks up your phone, they can't access your history. GlassChat database storage is fully locked, protecting your secrets against physical hardware theft and cloud scraping.
           </p>
         </div>
 
@@ -250,6 +250,36 @@
             </p>
           </div>
         </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item" id="faq-webrtc">
+          <div class="faq-question">
+            <h3>Are video and voice calls secure?</h3>
+            <div class="faq-toggle">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Yes, absolutely. By using standard WebRTC connections, audio and video streams are established directly between the caller and the recipient (peer-to-peer). GlassChat uses secure signaling to initiate the handshakes, meaning no call data is ever recorded, routed, or listened to by central servers.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item" id="faq-alarmsync">
+          <div class="faq-question">
+            <h3>What is Alarm Synchronization?</h3>
+            <div class="faq-toggle">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Alarm Synchronization utilizes local background workers and real-time database observers (via SyncAlarmDao) to sync alarm settings and priority bypass lists between matched contacts. If an alarm configuration updates on your device, it seamlessly synchronizes with the matched receiver, ensuring emergency bypass pipelines remain completely functional on both ends.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -260,7 +290,7 @@
       <div class="cta-box">
         <h2 class="cta-title">Upgrade Your <span class="gradient-text">Privacy Today</span></h2>
         <p class="cta-desc">
-          Ready to experience a gorgeous chat client protected by anti-screenshot shields, ghost private modes, and emergency bypass pings?
+          Ready to experience a gorgeous chat client protected by anti-screenshot shields, WebRTC audio/video calls, and hardware media compressors?
         </p>
         <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-primary" id="cta-install-btn">Download for Android (APK)</a>
       </div>
