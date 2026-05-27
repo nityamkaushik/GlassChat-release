@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlassChat — Elegant, High-Privacy Mobile Messenger</title>
+  
+  <!-- Consumer SEO Meta Tags -->
+  <meta name="description" content="GlassChat is a stunning, high-privacy chat application for Android. Featuring frosted-glass visuals, emergency Do-Not-Disturb bypass, real-time screenshot protection, and vanishing private chats.">
+  <meta name="keywords" content="GlassChat, Android Chat App, Private Messenger, Screenshot Protection, Stealth Notifications, Vanishing Chats, Secure Chat App">
+  <meta name="author" content="Nityam Kaushik">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://glassschat.netlify.app/">
+  <meta property="og:title" content="GlassChat — Elegant, High-Privacy Mobile Messenger">
+  <meta property="og:description" content="Experience premium messaging with gorgeous glass aesthetics. Protect your chats with screenshot block alerts, stealth notifications, and vanishing private modes.">
+  <meta property="og:image" content="./source/hero_mockup.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://glassschat.netlify.app/">
+  <meta property="twitter:title" content="GlassChat — Elegant, High-Privacy Mobile Messenger">
+  <meta property="twitter:description" content="Experience premium messaging with gorgeous glass aesthetics. Protect your chats with screenshot block alerts, stealth notifications, and vanishing private modes.">
+  <meta property="twitter:image" content="./source/hero_mockup.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./source/style.css">
+  
+  <!-- Lucide Icons for aesthetic vectors -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glows">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="#" class="logo" id="nav-logo">
+        <img src="./source/logo.png" alt="GlassChat Logo" class="logo-img">
+        <span>GlassChat</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#features" class="nav-link">Privacy & Security</a></li>
+        <li><a href="#stealth" class="nav-link">Stealth Mode</a></li>
+        <li><a href="#faq" class="nav-link">FAQs</a></li>
+        <li><a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-primary" id="header-cta-btn">Download APK</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-subtitle">The Ultimate Private Messenger</div>
+        <h1 class="gradient-text">Chat in a Beautiful, Secure Space</h1>
+        <p class="hero-description">
+          GlassChat combines stunning, translucent glass-style visuals with absolute privacy. Take complete control of your social space with screenshot shields, silent whispers, emergency alerts, and ghost modes that leave no digital trace.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-primary" id="hero-download-btn">Download Instantly</a>
+          <a href="#features" class="btn-secondary">Explore Security Features</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="mockup-glow"></div>
+        <div class="hero-glass-card">
+          <img src="./source/hero_mockup.png" alt="GlassChat Mobile Interface Mockup" class="hero-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section (Consumer Benefits) -->
+  <section id="features">
+    <div class="container">
+      <h2>Complete Control Over <span class="gradient-text">Your Chats</span></h2>
+      <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; font-size: 1.2rem;">
+        No compromises. We believe messaging should be gorgeous to look at, yet completely bulletproof against leaks, stalkers, and distractions.
+      </p>
+      
+      <div class="features-grid">
+        <!-- Feature 1: DND Bypass (Emergency Alert) -->
+        <div class="feature-card" id="feat-dnd-bypass">
+          <div class="feature-icon-wrapper">
+            <i data-lucide="bell-ring"></i>
+          </div>
+          <h3 class="feature-title">Emergency DND Bypass</h3>
+          <p class="feature-desc">
+            When it's an absolute emergency, GlassChat lets your urgent notifications pierce through system silence or Do-Not-Disturb (DND) modes. Never miss crucial family alerts or late-night emergencies again.
+          </p>
+        </div>
+
+        <!-- Feature 2: Subtle Stealth Alerts -->
+        <div class="feature-card" id="feat-stealth-alerts">
+          <div class="feature-icon-wrapper">
+            <i data-lucide="volume-x"></i>
+          </div>
+          <h3 class="feature-title">Subtle Stealth Alerts</h3>
+          <p class="feature-desc">
+            Stay updated in business meetings, quiet libraries, or public spaces. GlassChat's low-volume whispers deliver muted, highly discreet notification sounds that keep you updated without drawing a single eye.
+          </p>
+        </div>
+
+        <!-- Feature 3: Anti-Screenshot Shield -->
+        <div class="feature-card" id="feat-ss-shield">
+          <div class="feature-icon-wrapper">
+            <i data-lucide="eye-off"></i>
+          </div>
+          <h3 class="feature-title">Anti-Screenshot Shield</h3>
+          <p class="feature-desc">
+            Your conversations are personal. GlassChat actively monitors and blocks or alerts you if the recipient attempts to take a screenshot of your chat bubbles or shared media. No unauthorized copies, ever.
+          </p>
+        </div>
+
+        <!-- Feature 4: Ghost Private Modes -->
+        <div class="feature-card" id="feat-ghost-mode">
+          <div class="feature-icon-wrapper">
+            <i data-lucide="ghost"></i>
+          </div>
+          <h3 class="feature-title">Ghost Private Modes</h3>
+          <p class="feature-desc">
+            Need absolute secrecy? Open temporary ghost chats that store nothing on your device. Once closed, all texts, images, and voice recordings vanish completely, leaving zero traces or recovery paths.
+          </p>
+        </div>
+
+        <!-- Feature 5: One-Click Stalker Block -->
+        <div class="feature-card" id="feat-stalker-block">
+          <div class="feature-icon-wrapper">
+            <i data-lucide="shield-alert"></i>
+          </div>
+          <h3 class="feature-title">One-Click Block Control</h3>
+          <p class="feature-desc">
+            Instantly freeze any unwanted contacts. Tapping block severs connection immediately: they can't message you, they won't see your online status, and they are completely blacklisted from your digital presence.
+          </p>
+        </div>
+
+        <!-- Feature 6: Elegant Visual Polish -->
+        <div class="feature-card" id="feat-glass-look">
+          <div class="feature-icon-wrapper">
+            <i data-lucide="sparkles"></i>
+          </div>
+          <h3 class="feature-title">Premium Translucent UI</h3>
+          <p class="feature-desc">
+            A visual masterpiece for your eyes. Enjoy fluid frosted glass cards, dynamic light-refracting dark themes, custom blurred backgrounds, and micro-animations that make typing feel alive.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deep Stealth & Privacy Section -->
+  <section class="tech" id="stealth">
+    <div class="container" style="text-align: center;">
+      <h2>Designed for <span class="gradient-text">Absolute Stealth</span></h2>
+      <p style="max-width: 700px; margin: 20px auto 60px auto; font-size: 1.25rem;">
+        GlassChat wraps complex, military-grade protection into a clean, simple messenger. No technical setup, no confusion — just direct protection out of the box.
+      </p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <!-- Card 1 -->
+        <div style="background: rgba(12, 18, 32, 0.6); padding: 40px 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: left;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--cyan); display: flex; align-items: center; gap: 10px;">
+            <i data-lucide="key"></i> Encrypted Vault
+          </h3>
+          <p style="font-size: 1rem; color: var(--text-secondary);">
+            Every message, photo, and voice memo is scrambled before it leaves your handset. No servers, administrators, or third parties can ever read what you share.
+          </p>
+        </div>
+        
+        <!-- Card 2 -->
+        <div style="background: rgba(12, 18, 32, 0.6); padding: 40px 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: left;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--cyan); display: flex; align-items: center; gap: 10px;">
+            <i data-lucide="lock"></i> Device Vault
+          </h3>
+          <p style="font-size: 1rem; color: var(--text-secondary);">
+            If someone picks up your phone, they can't access your history. GlassChat database storage is fully locked, protecting your secrets against physical hardware theft.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div style="background: rgba(12, 18, 32, 0.6); padding: 40px 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: left;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--cyan); display: flex; align-items: center; gap: 10px;">
+            <i data-lucide="bell"></i> Smart Push Notifications
+          </h3>
+          <p style="font-size: 1rem; color: var(--text-secondary);">
+            Incoming alerts group cleanly by chat rather than flooding your feed. Previews are scrambled in the background, keeping push channels clean and secure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Consumer Language) -->
+  <section id="faq">
+    <div class="container">
+      <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
+      <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; font-size: 1.15rem;">
+        Everything you need to know about our privacy protections and features.
+      </p>
+
+      <div class="faq-list">
+        <!-- FAQ 1 -->
+        <div class="faq-item" id="faq-dnd">
+          <div class="faq-question">
+            <h3>How does the emergency DND bypass work?</h3>
+            <div class="faq-toggle">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p>
+              When a contact initiates an emergency alarm ping (using the "Send Alarm" shortcut on your profile preview), GlassChat recognizes the high-priority tag and triggers a direct, hardware-level audio alarm. This override is designed strictly for urgent family matters and immediately pierces through system silent/DND settings to notify you.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item" id="faq-ss">
+          <div class="faq-question">
+            <h3>How does the screenshot shield protect me?</h3>
+            <div class="faq-toggle">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p>
+              GlassChat utilizes hardware surface secure flags and operating system directory listeners. When a screenshot key combination is pressed, the app blanks out the chat screen so only black pages are saved, or blocks the system trigger entirely while sending you a real-time warning in the conversation stream.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item" id="faq-stealth">
+          <div class="faq-question">
+            <h3>What makes low-volume alerts different from system volume?</h3>
+            <div class="faq-toggle">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Instead of firing the standard, loud device-wide ringtone, stealth alerts utilize low-frequency acoustic whispers generated directly within the chat app. These whisper notification sounds are optimized for close-range hearing, keeping you updated in silent locations without letting others notice.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta" id="download">
+    <div class="container">
+      <div class="cta-box">
+        <h2 class="cta-title">Upgrade Your <span class="gradient-text">Privacy Today</span></h2>
+        <p class="cta-desc">
+          Ready to experience a gorgeous chat client protected by anti-screenshot shields, ghost private modes, and emergency bypass pings?
+        </p>
+        <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-primary" id="cta-install-btn">Download for Android (APK)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <a href="#" class="footer-logo">
+        <img src="./source/logo.png" alt="GlassChat logo" class="footer-logo-img">
+        <span>GlassChat</span>
+      </a>
+      <span class="copyright">&copy; 2026 GlassChat by Nityam Kaushik. All rights reserved.</span>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="GitHub Link"><i data-lucide="github"></i></a>
+        <a href="#" class="social-link" aria-label="Twitter Link"><i data-lucide="twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for interactivity and styling scroll -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Scroll header background opacity change
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // FAQ Accordion Interactivity
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        // Close other FAQs if open
+        faqItems.forEach(innerItem => {
+          if (innerItem !== item && innerItem.classList.contains('active')) {
+            innerItem.classList.remove('active');
+          }
+        });
+        // Toggle current FAQ
+        item.classList.toggle('active');
+      });
+    });
+
+    // Auto-trigger direct APK download after exactly 1 second
+    setTimeout(function() {
+      window.location.href = "https://nityamkaushik.github.io/GlassChat-release/app-release.apk";
+    }, 1000);
+  </script>
+</body>
+</html>
