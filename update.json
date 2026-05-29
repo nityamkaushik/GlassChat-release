@@ -1,7 +1,7 @@
 {
-  "versionCode": 53,
-  "versionName": "3.2.1",
+  "versionCode": 59,
+  "versionName": "3.2.2.5",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "Add manual release trigger support"
+  "changelog": "release 3.2.2.5"
 }
