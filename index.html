@@ -1,405 +1,1631 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlassChat — Elegant, High-Privacy Mobile Messenger</title>
-
-  <!-- Consumer SEO Meta Tags -->
-  <meta name="description"
-    content="GlassChat is a stunning, high-privacy chat application for Android. Featuring frosted-glass visuals, WebRTC P2P audio & video calling, hardware video compression, emergency DND bypass, and real-time alarm synchronization.">
-  <meta name="keywords"
-    content="GlassChat, Android Chat App, Private Messenger, WebRTC Audio Call, WebRTC Video Call, Alarm Sync, DND Bypass, Vanish Mode, Screenshot Protection, Secure Chat App">
+  <title>GlassChat — Privacy-First Messenger for Android</title>
+  <meta name="description" content="GlassChat is a premium, privacy-first Android messenger. Vanish Mode, Screenshot Shield, P2P WebRTC Calls, Connection-Only Chats, Smart Alarm Sync, and zero image storage.">
+  <meta name="keywords" content="GlassChat, Private Messenger, Vanish Mode, Screenshot Shield, WebRTC Calls, Android Chat, Secure Messaging, Privacy App">
   <meta name="author" content="Nityam Kaushik">
-
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nityamkaushik.github.io/GlassChat-release/">
-  <meta property="og:title" content="GlassChat — Elegant, High-Privacy Mobile Messenger">
-  <meta property="og:description"
-    content="Experience premium messaging with gorgeous glass aesthetics. Protect your chats with screenshot shields, WebRTC audio/video calls, smart alarm synchronization, stealth notifications, and vanishing private modes.">
+  <meta property="og:title" content="GlassChat — Privacy-First Messenger">
+  <meta property="og:description" content="The most private Android messenger. Vanish Mode, Screenshot Shield, WebRTC Calls, and zero trace technology.">
   <meta property="og:image" content="./source/hero_mockup.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://nityamkaushik.github.io/GlassChat-release/">
-  <meta property="twitter:title" content="GlassChat — Elegant, High-Privacy Mobile Messenger">
-  <meta property="twitter:description"
-    content="Experience premium messaging with gorgeous glass aesthetics. Protect your chats with screenshot shields, WebRTC audio/video calls, smart alarm synchronization, stealth notifications, and vanishing private modes.">
-  <meta property="twitter:image" content="./source/hero_mockup.png">
+  <style>
+    :root {
+      --bg: #040810;
+      --bg2: #060c18;
+      --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(99,179,255,0.25);
+      --text: #f0f4ff;
+      --text-2: #8a9ab8;
+      --text-3: #4a5a78;
+      --cyan: #63b3ff;
+      --cyan-dim: rgba(99,179,255,0.15);
+      --violet: #a78bff;
+      --violet-dim: rgba(167,139,255,0.12);
+      --emerald: #34d399;
+      --emerald-dim: rgba(52,211,153,0.12);
+      --amber: #fbbf24;
+      --rose: #fb7185;
+      --rose-dim: rgba(251,113,133,0.12);
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="./source/style.css">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Lucide Icons for aesthetic vectors -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NOISE TEXTURE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── AMBIENT ORBS ── */
+    .orbs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      animation: orbFloat 20s ease-in-out infinite;
+    }
+    .orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(99,179,255,0.08), transparent 70%); top: -20%; left: -15%; animation-delay: 0s; }
+    .orb-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(167,139,255,0.07), transparent 70%); top: 30%; right: -20%; animation-delay: -7s; }
+    .orb-3 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(52,211,153,0.05), transparent 70%); bottom: 10%; left: 20%; animation-delay: -14s; }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 15px) scale(0.95); }
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(4, 8, 16, 0.85);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-img { width: 34px; height: 34px; border-radius: 10px; }
+    .logo-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-2);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface); }
+    .nav-cta {
+      background: var(--cyan) !important;
+      color: var(--bg) !important;
+      font-weight: 500 !important;
+      padding: 9px 20px !important;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 32px 80px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99,179,255,0.08);
+      border: 1px solid rgba(99,179,255,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 .line-1 { display: block; color: var(--text); }
+    .hero h1 .line-2 {
+      display: block;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      max-width: 580px;
+      font-size: 1.15rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin: 0 auto 44px;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .btn-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cyan);
+      color: var(--bg);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 0 40px rgba(99,179,255,0.25);
+    }
+    .btn-dl:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(99,179,255,0.4); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      color: var(--text);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: var(--surface-hover); border-color: var(--border-bright); }
+
+    /* HERO STATS STRIP */
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      margin-top: 72px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .stat {
+      flex: 1;
+      padding: 24px 32px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--text-3); margin-top: 4px; letter-spacing: 0.04em; }
+
+    /* HERO MOCKUP */
+    .hero-mockup {
+      margin-top: 80px;
+      position: relative;
+      max-width: 340px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+    .hero-mockup::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(ellipse, rgba(99,179,255,0.12), transparent 65%);
+      z-index: -1;
+    }
+    .hero-mockup img {
+      width: 100%;
+      border-radius: 32px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    /* FLOATING BADGES */
+    .badge-float {
+      position: absolute;
+      background: rgba(10, 18, 35, 0.9);
+      border: 1px solid var(--border-bright);
+      backdrop-filter: blur(20px);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      white-space: nowrap;
+      animation: badgeFloat 4s ease-in-out infinite;
+    }
+    .badge-float.left { left: -80px; top: 30%; animation-delay: -1s; }
+    .badge-float.right { right: -80px; top: 55%; animation-delay: -2.5s; }
+    .badge-dot { width: 8px; height: 8px; border-radius: 50%; }
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 0; }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 1.1rem;
+      color: var(--text-2);
+      max-width: 560px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .grad { background: linear-gradient(135deg, var(--cyan), var(--violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* ── FEATURES GRID ── */
+    #features {
+      background: linear-gradient(180deg, transparent, rgba(99,179,255,0.02) 50%, transparent);
+    }
+    .features-header { text-align: center; margin-bottom: 72px; }
+    .features-header .section-desc { margin: 0 auto; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .feat-card {
+      background: var(--bg);
+      padding: 40px 36px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .feat-card:hover { background: var(--surface); }
+    .feat-card:hover::before { opacity: 1; }
+    .feat-card.c-cyan::before { background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+    .feat-card.c-violet::before { background: linear-gradient(90deg, transparent, var(--violet), transparent); }
+    .feat-card.c-emerald::before { background: linear-gradient(90deg, transparent, var(--emerald), transparent); }
+    .feat-card.c-amber::before { background: linear-gradient(90deg, transparent, var(--amber), transparent); }
+    .feat-card.c-rose::before { background: linear-gradient(90deg, transparent, var(--rose), transparent); }
+
+    .feat-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      font-size: 1.3rem;
+    }
+    .feat-icon.cyan { background: var(--cyan-dim); color: var(--cyan); }
+    .feat-icon.violet { background: var(--violet-dim); color: var(--violet); }
+    .feat-icon.emerald { background: var(--emerald-dim); color: var(--emerald); }
+    .feat-icon.amber { background: rgba(251,191,36,0.12); color: var(--amber); }
+    .feat-icon.rose { background: var(--rose-dim); color: var(--rose); }
+
+    .feat-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .feat-card p { font-size: 0.92rem; color: var(--text-2); line-height: 1.65; }
+    .feat-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .feat-tag.new { background: rgba(52,211,153,0.15); color: var(--emerald); }
+    .feat-tag.hot { background: rgba(251,113,133,0.15); color: var(--rose); }
+
+    /* ── PRIVACY DEEP DIVE ── */
+    #privacy {
+      overflow: hidden;
+    }
+    .privacy-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .privacy-visual {
+      position: relative;
+    }
+    .shield-graphic {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 420px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .shield-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid;
+      animation: ringPulse 3s ease-in-out infinite;
+    }
+    .ring-1 { inset: 0; border-color: rgba(99,179,255,0.15); animation-delay: 0s; }
+    .ring-2 { inset: 12%; border-color: rgba(99,179,255,0.12); animation-delay: 0.5s; }
+    .ring-3 { inset: 24%; border-color: rgba(99,179,255,0.09); animation-delay: 1s; }
+    .ring-4 { inset: 36%; border-color: rgba(99,179,255,0.06); animation-delay: 1.5s; }
+    @keyframes ringPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.02); opacity: 0.7; }
+    }
+    .shield-core {
+      position: absolute;
+      inset: 44%;
+      background: radial-gradient(circle, rgba(99,179,255,0.3), rgba(99,179,255,0.05));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .shield-labels {
+      position: absolute;
+      inset: 0;
+    }
+    .shield-item {
+      position: absolute;
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+    .si-1 { top: 8%; left: 50%; transform: translateX(-50%); }
+    .si-2 { top: 28%; right: 0; }
+    .si-3 { bottom: 28%; right: 0; }
+    .si-4 { bottom: 8%; left: 50%; transform: translateX(-50%); }
+    .si-5 { bottom: 28%; left: 0; }
+    .si-6 { top: 28%; left: 0; }
+
+    .privacy-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .privacy-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+    .privacy-list li:hover { border-color: var(--border-bright); }
+    .pl-icon {
+      width: 38px; height: 38px; min-width: 38px;
+      border-radius: 10px;
+      background: var(--cyan-dim);
+      color: var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .pl-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .pl-text p { font-size: 0.85rem; color: var(--text-2); line-height: 1.5; }
+
+    /* ── CALLS SECTION ── */
+    #calls { background: linear-gradient(180deg, transparent, rgba(167,139,255,0.02) 50%, transparent); }
+    .calls-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .call-cards { display: flex; flex-direction: column; gap: 16px; }
+    .call-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .call-card:hover { border-color: var(--border-bright); transform: translateX(4px); }
+    .call-card-icon {
+      width: 52px; height: 52px; min-width: 52px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .call-card-icon.v { background: var(--violet-dim); }
+    .call-card-icon.c { background: var(--emerald-dim); }
+    .call-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+    .call-card p { font-size: 0.85rem; color: var(--text-2); }
+    .call-badge {
+      margin-left: auto;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .cb-p2p { background: rgba(52,211,153,0.12); color: var(--emerald); }
+    .cb-live { background: rgba(99,179,255,0.12); color: var(--cyan); }
+
+    .calls-perks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .perk {
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .perk-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--violet);
+      letter-spacing: -0.02em;
+    }
+    .perk-label { font-size: 0.78rem; color: var(--text-2); margin-top: 2px; }
+
+    /* ── ALARM SECTION ── */
+    #alarm { }
+    .alarm-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .alarm-steps { display: flex; flex-direction: column; gap: 0; }
+    .alarm-step {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .alarm-step:last-child { border-bottom: none; }
+    .step-num {
+      width: 36px; height: 36px; min-width: 36px;
+      border-radius: 10px;
+      background: var(--cyan-dim);
+      border: 1px solid rgba(99,179,255,0.2);
+      color: var(--cyan);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+    .step-text p { font-size: 0.85rem; color: var(--text-2); line-height: 1.55; }
+
+    .alarm-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .alarm-feat {
+      padding: 22px 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .alarm-feat-icon {
+      font-size: 1.4rem;
+      width: 48px; height: 48px; min-width: 48px;
+      border-radius: 14px;
+      background: rgba(251,191,36,0.1);
+      color: var(--amber);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .alarm-feat h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
+    .alarm-feat p { font-size: 0.82rem; color: var(--text-2); line-height: 1.5; }
+
+    /* ── CONNECTIONS SECTION ── */
+    #connections { background: linear-gradient(180deg, transparent, rgba(52,211,153,0.02) 50%, transparent); }
+    .connections-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .connections-text { }
+    .connect-list {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-top: 32px;
+    }
+    .connect-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: all 0.2s;
+    }
+    .connect-item:hover { border-color: rgba(52,211,153,0.25); }
+    .ci-icon {
+      font-size: 1.1rem;
+      width: 36px; height: 36px; min-width: 36px;
+      border-radius: 10px;
+      background: var(--emerald-dim);
+      color: var(--emerald);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ci-text h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; }
+    .ci-text p { font-size: 0.82rem; color: var(--text-2); line-height: 1.5; }
+
+    .connections-visual {
+      position: sticky;
+      top: 120px;
+    }
+    .conn-ui {
+      background: rgba(8, 14, 28, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+    }
+    .conn-ui-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .conn-ui-title { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 600; }
+    .conn-badge { font-size: 0.72rem; background: var(--emerald-dim); color: var(--emerald); padding: 3px 10px; border-radius: 20px; }
+    .conn-user {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .conn-user:last-child { border-bottom: none; }
+    .conn-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .conn-info { flex: 1; }
+    .conn-name { font-size: 0.85rem; font-weight: 500; }
+    .conn-status { font-size: 0.72rem; color: var(--text-3); margin-top: 1px; }
+    .conn-action {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .ca-add { background: var(--emerald-dim); color: var(--emerald); }
+    .ca-connected { background: var(--cyan-dim); color: var(--cyan); }
+
+    /* ── WALLPAPER & CUSTOMIZATION ── */
+    #customize { }
+    .customize-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+    .custom-card {
+      padding: 32px 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .custom-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .custom-card:hover { transform: translateY(-4px); border-color: var(--border-bright); }
+    .custom-card:hover::after { opacity: 1; }
+    .custom-icon {
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+    .custom-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; }
+    .custom-card p { font-size: 0.88rem; color: var(--text-2); line-height: 1.6; }
+
+    /* ── FAQ ── */
+    #faq { background: linear-gradient(180deg, transparent, rgba(99,179,255,0.015) 50%, transparent); }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-header .section-desc { margin: 0 auto; }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+    .faq-item.open { border-color: var(--border-bright); }
+    .faq-q {
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      user-select: none;
+    }
+    .faq-q svg {
+      min-width: 18px; width: 18px; height: 18px;
+      color: var(--text-3);
+      transition: transform 0.25s;
+    }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); color: var(--cyan); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a p {
+      padding: 0 22px 18px;
+      font-size: 0.85rem;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* ── CTA SECTION ── */
+    #cta {
+      padding: 80px 0 120px;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(99,179,255,0.06), rgba(167,139,255,0.06));
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 20%; right: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--violet), transparent);
+    }
+    .cta-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+    .cta-box h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .cta-box p {
+      color: var(--text-2);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-note {
+      margin-top: 24px;
+      font-size: 0.78rem;
+      color: var(--text-3);
+    }
+    .cta-note span { color: var(--emerald); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .footer-logo span { font-family: 'Syne', sans-serif; font-weight: 600; }
+    .footer-logo img { width: 28px; height: 28px; border-radius: 8px; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-3); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-2 { transition-delay: 0.15s; }
+    .reveal-3 { transition-delay: 0.25s; }
+    .reveal-4 { transition-delay: 0.35s; }
+
+    /* ── DIVIDER LINE ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 32px;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .privacy-layout, .calls-layout, .alarm-layout, .connections-layout { grid-template-columns: 1fr; gap: 48px; }
+      .shield-graphic { max-width: 300px; }
+      .calls-perks { grid-template-columns: repeat(4, 1fr); }
+      .customize-grid { grid-template-columns: repeat(2, 1fr); }
+      .faq-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+      .badge-float { display: none; }
+      .cta-box { padding: 48px 32px; }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .customize-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .calls-perks { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- Ambient background glow elements -->
-  <div class="ambient-glows">
-    <div class="glow-1"></div>
-    <div class="glow-2"></div>
+  <!-- Ambient orbs -->
+  <div class="orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
   </div>
 
-  <!-- Header & Navigation -->
-  <header id="header">
-    <div class="container nav-container">
-      <a href="#" class="logo" id="nav-logo">
-        <img src="./source/logo.png" alt="GlassChat Logo" class="logo-img">
-        <span>GlassChat</span>
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <img src="./source/logo.png" alt="GlassChat" class="logo-img">
+        <span class="logo-name">GlassChat</span>
       </a>
-      <ul class="nav-menu">
-        <li><a href="#features" class="nav-link">Privacy & Security</a></li>
-        <li><a href="#stealth" class="nav-link">Stealth Mode</a></li>
-        <li><a href="#faq" class="nav-link">FAQs</a></li>
-        <li><a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-primary"
-            id="header-cta-btn">Download APK</a></li>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#calls">Calls</a></li>
+        <li><a href="#connections">Connections</a></li>
+        <li><a href="#alarm">Alarms</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="nav-cta">Download APK</a></li>
       </ul>
     </div>
-  </header>
+  </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="hero-subtitle">The Ultimate Private Messenger</div>
-        <h1 class="gradient-text">Chat in a Beautiful, Secure Space</h1>
-        <p class="hero-description">
-          GlassChat combines stunning, translucent glass-style visuals with absolute privacy. Take complete control of
-          your social space with screenshot shields, direct WebRTC peer-to-peer calling, silent whispers, emergency
-          alerts, and ghost modes that leave no digital trace.
-        </p>
-        <div class="hero-buttons">
-          <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-primary"
-            id="hero-download-btn">Download Instantly</a>
-          <a href="#features" class="btn-secondary">Explore Security Features</a>
+    <div style="position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;">
+      <div class="hero-eyebrow">Free for Android · No Ads · No Data Harvesting</div>
+
+      <h1>
+        <span class="line-1">Your Conversations.</span>
+        <span class="line-2">Completely Private.</span>
+      </h1>
+
+      <p class="hero-sub">GlassChat is the only messenger that combines a stunning glassmorphic UI with military-grade privacy — Vanish Mode, Screenshot Shield, P2P Calls, and zero trace technology.</p>
+
+      <div class="hero-actions">
+        <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-dl">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download APK
+        </a>
+        <a href="#features" class="btn-ghost">
+          Explore Features
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-val">100%</div>
+          <div class="stat-label">Zero Image Storage on Server</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">P2P</div>
+          <div class="stat-label">WebRTC Direct Calls</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">0</div>
+          <div class="stat-label">Traces in Vanish Mode</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">256-bit</div>
+          <div class="stat-label">End-to-End Encryption</div>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="mockup-glow"></div>
-        <div class="hero-glass-card">
-          <img src="./source/hero_mockup.png" alt="GlassChat Mobile Interface Mockup" class="hero-img">
+
+      <div class="hero-mockup">
+        <div class="badge-float left">
+          <div class="badge-dot" style="background:var(--emerald)"></div>
+          Screenshot Blocked
         </div>
+        <div class="badge-float right">
+          <div class="badge-dot" style="background:var(--cyan)"></div>
+          Vanish Mode Active
+        </div>
+        <img src="./source/hero_mockup.png" alt="GlassChat Interface">
       </div>
     </div>
   </section>
 
-  <!-- Features Section (Consumer Benefits) -->
+  <div class="divider"></div>
+
+  <!-- Features Grid -->
   <section id="features">
     <div class="container">
-      <h2>Complete Control Over <span class="gradient-text">Your Chats</span></h2>
-      <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; font-size: 1.2rem;">
-        No compromises. We believe messaging should be gorgeous to look at, yet completely bulletproof against leaks,
-        stalkers, and distractions.
-      </p>
+      <div class="features-header reveal">
+        <div class="section-tag">Everything You Need</div>
+        <h2 class="section-title">Built for <span class="grad">Privacy-First</span> People</h2>
+        <p class="section-desc">Every feature is designed with one principle: your conversations stay yours — always.</p>
+      </div>
 
-      <div class="features-grid">
-        <!-- Feature 1: Emergency DND Bypass (Sending Alarm) -->
-        <div class="feature-card" id="feat-dnd-bypass">
-          <div class="feature-icon-wrapper">
-            <i data-lucide="bell-ring"></i>
-          </div>
-          <h3 class="feature-title">Emergency DND Bypass</h3>
-          <p class="feature-desc">
-            When life demands immediate attention, send an emergency alarm ping. GlassChat pierces through system silent
-            and Do-Not-Disturb (DND) modes, triggering a direct, hardware-level audio alarm for life-or-death contact.
-          </p>
+      <div class="features-grid reveal reveal-2">
+        <!-- Vanish Mode -->
+        <div class="feat-card c-violet">
+          <span class="feat-tag hot">Privacy</span>
+          <div class="feat-icon violet">👻</div>
+          <h3>Vanish Mode</h3>
+          <p>Close a session and it's gone — for real. All texts, media, voice notes, and caches are permanently shredded on both ends the instant you exit. Zero residue, zero forensics.</p>
         </div>
 
-        <!-- Feature 2: Smart Alarm Sync Features -->
-        <div class="feature-card" id="feat-alarm-sync">
-          <div class="feature-icon-wrapper">
-            <i data-lucide="refresh-cw"></i>
-          </div>
-          <h3 class="feature-title">Smart Priority Alarm Sync</h3>
-          <p class="feature-desc">
-            Coordinate alarms and alert schedules effortlessly. GlassChat runs background synchronization routines using
-            custom SQLite alarm DAOs and receiver schedules, keeping priority alert profiles in perfect real-time sync.
-          </p>
+        <!-- Screenshot Shield -->
+        <div class="feat-card c-cyan">
+          <span class="feat-tag hot">Security</span>
+          <div class="feat-icon cyan">🛡️</div>
+          <h3>Screenshot Shield</h3>
+          <p>Hardware-level OS flags block screen captures. If someone tries to screenshot your chat, they get a blank black frame — or an instant in-chat alert warning you immediately.</p>
         </div>
 
-        <!-- Feature 3: Stealth Peer-to-Peer Calls (Video & Audio) -->
-        <div class="feature-card" id="feat-webrtc-calls">
-          <div class="feature-icon-wrapper">
-            <i data-lucide="phone-call"></i>
-          </div>
-          <h3 class="feature-title">Encrypted P2P Calls</h3>
-          <p class="feature-desc">
-            Connect via crystal-clear audio and video calling. By utilizing peer-to-peer WebRTC connections with secure
-            signaling handshakes, call streams establish direct node-to-node links, bypassing central storage entirely.
-          </p>
+        <!-- No Database Image Storage -->
+        <div class="feat-card c-emerald">
+          <span class="feat-tag new">Unique</span>
+          <div class="feat-icon emerald">🗄️</div>
+          <h3>No Stored Images on Server</h3>
+          <p>Photos you share live only in your chat. GlassChat never permanently stores your images in a central database. When chats end, media disappears from all servers.</p>
         </div>
 
-        <!-- Feature 4: Vanish Mode (Ghost Chats) -->
-        <div class="feature-card" id="feat-vanish-mode">
-          <div class="feature-icon-wrapper">
-            <i data-lucide="ghost"></i>
-          </div>
-          <h3 class="feature-title">True Vanish Mode</h3>
-          <p class="feature-desc">
-            Leave zero trace. Ghost private chats shred all records on both ends the moment you close the session. All
-            texts, temporary images, and audio voice files are permanently cleared from local databases and caches.
-          </p>
+        <!-- P2P Video Calls -->
+        <div class="feat-card c-violet">
+          <div class="feat-icon violet">📹</div>
+          <h3>HD Video Calls</h3>
+          <p>Crystal-clear, full-HD video calls powered by WebRTC. Direct peer-to-peer streams — no middleman servers record or listen to your calls. Pure, direct, private.</p>
         </div>
 
-        <!-- Feature 5: Anti-Screenshot Shield -->
-        <div class="feature-card" id="feat-ss-shield">
-          <div class="feature-icon-wrapper">
-            <i data-lucide="eye-off"></i>
-          </div>
-          <h3 class="feature-title">Anti-Screenshot Shield</h3>
-          <p class="feature-desc">
-            Protect your media from leaks. By deploying custom hardware-level OS Secure flags and screen surface
-            blockers, GlassChat prevents recipients from saving screenshots or screen recordings of your private chat
-            bubbles.
-          </p>
+        <!-- Audio Calls -->
+        <div class="feat-card c-cyan">
+          <div class="feat-icon cyan">📞</div>
+          <h3>Private Audio Calls</h3>
+          <p>High-quality audio calls that bypass servers entirely. With PIP (Picture-in-Picture) support, switch apps without dropping your call — fully encrypted from start to finish.</p>
         </div>
 
-        <!-- Feature 6: On-the-Fly HD Video Compression -->
-        <div class="feature-card" id="feat-video-compression">
-          <div class="feature-icon-wrapper">
-            <i data-lucide="zap"></i>
-          </div>
-          <h3 class="feature-title">Hardware-Level Compression</h3>
-          <p class="feature-desc">
-            Share heavy media directories in milliseconds. GlassChat employs custom, hardware-accelerated video
-            compressors directly on your device, shrinking files before transmission to save data.
-          </p>
+        <!-- Connections-Only -->
+        <div class="feat-card c-emerald">
+          <span class="feat-tag new">Exclusive</span>
+          <div class="feat-icon emerald">🔗</div>
+          <h3>Connection-Only Chats</h3>
+          <p>Only your approved connections can chat with you. No strangers, no spam. GlassChat's mutual-connection system means every conversation is intentional and consented.</p>
+        </div>
+
+        <!-- Smart Alarm -->
+        <div class="feat-card c-amber">
+          <div class="feat-icon amber">⏰</div>
+          <h3>Smart Alarm Sync</h3>
+          <p>Sync alarm priorities with your contacts. Emergency alarms pierce through DND and Silent mode, triggering hardware-level audio on your partner's device for critical situations.</p>
+        </div>
+
+        <!-- Chat Syncing -->
+        <div class="feat-card c-cyan">
+          <div class="feat-icon cyan">⚡</div>
+          <h3>Offline-First Chat Sync</h3>
+          <p>Never lose a message. GlassChat stores everything locally first, syncing seamlessly when you're back online. Your chats always load instantly — even with no signal.</p>
+        </div>
+
+        <!-- Wallpapers & Themes -->
+        <div class="feat-card c-violet">
+          <div class="feat-icon violet">🎨</div>
+          <h3>Custom Wallpapers & Themes</h3>
+          <p>Personalize every conversation with custom wallpapers, and choose from System, Light, or Dark themes. Your messenger, your aesthetic — make it feel uniquely yours.</p>
+        </div>
+
+        <!-- Group Chats -->
+        <div class="feat-card c-emerald">
+          <div class="feat-icon emerald">👥</div>
+          <h3>Secure Group Chats</h3>
+          <p>Create groups with your connections. All group messages, media, and voice notes share the same privacy protections — screenshot shields, vanish mode, and zero server traces.</p>
+        </div>
+
+        <!-- Voice Notes -->
+        <div class="feat-card c-amber">
+          <div class="feat-icon amber">🎙️</div>
+          <h3>Voice Notes & Media</h3>
+          <p>Send voice messages, images, and videos — all hardware-compressed on your device before uploading, saving your data. Play voice notes directly in-chat with waveform visualization.</p>
+        </div>
+
+        <!-- Discover -->
+        <div class="feat-card c-rose">
+          <div class="feat-icon rose">🔍</div>
+          <h3>Connections Discover</h3>
+          <p>Find new connections by username or email. The Discover screen lets you selectively build your network — request to connect, and chats only open after mutual acceptance.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Deep Stealth & Privacy Section -->
-  <section class="tech" id="stealth">
-    <div class="container" style="text-align: center;">
-      <h2>Designed for <span class="gradient-text">Absolute Stealth</span></h2>
-      <p style="max-width: 700px; margin: 20px auto 60px auto; font-size: 1.25rem;">
-        GlassChat wraps complex, military-grade protection into a clean, simple messenger. No technical setup, no
-        confusion — just direct protection out of the box.
-      </p>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-        <!-- Card 1 -->
-        <div
-          style="background: rgba(12, 18, 32, 0.6); padding: 40px 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: left;">
-          <h3
-            style="font-size: 1.3rem; margin-bottom: 12px; color: var(--cyan); display: flex; align-items: center; gap: 10px;">
-            <i data-lucide="key"></i> Encrypted Vault
-          </h3>
-          <p style="font-size: 1rem; color: var(--text-secondary);">
-            Every message, photo, and voice memo is scrambled before it leaves your handset. No servers, administrators,
-            or third parties can ever read what you share.
-          </p>
+  <!-- Privacy Deep Dive -->
+  <section id="privacy">
+    <div class="container">
+      <div class="privacy-layout">
+        <div class="privacy-visual reveal">
+          <div class="shield-graphic">
+            <div class="shield-ring ring-1"></div>
+            <div class="shield-ring ring-2"></div>
+            <div class="shield-ring ring-3"></div>
+            <div class="shield-ring ring-4"></div>
+            <div class="shield-core">🔒</div>
+            <div class="shield-labels">
+              <div class="shield-item si-1">Vanish Mode</div>
+              <div class="shield-item si-2">Screenshot Block</div>
+              <div class="shield-item si-3">P2P Calls</div>
+              <div class="shield-item si-4">Zero Storage</div>
+              <div class="shield-item si-5">Offline First</div>
+              <div class="shield-item si-6">Connections Only</div>
+            </div>
+          </div>
         </div>
 
-        <!-- Card 2 -->
-        <div
-          style="background: rgba(12, 18, 32, 0.6); padding: 40px 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: left;">
-          <h3
-            style="font-size: 1.3rem; margin-bottom: 12px; color: var(--cyan); display: flex; align-items: center; gap: 10px;">
-            <i data-lucide="lock"></i> Room SQLite Local Storage
-          </h3>
-          <p style="font-size: 1rem; color: var(--text-secondary);">
-            If someone picks up your phone, they can't access your history. GlassChat database storage is fully locked,
-            protecting your secrets against physical hardware theft and cloud scraping.
-          </p>
-        </div>
+        <div class="reveal reveal-2">
+          <div class="section-tag">Privacy Architecture</div>
+          <h2 class="section-title">Designed from the <span class="grad">Ground Up</span> for Privacy</h2>
+          <p class="section-desc" style="margin-bottom:32px;">GlassChat doesn't bolt on privacy as an afterthought. Every system is architected from day one to leave no trace, store no data, and expose no metadata.</p>
 
-        <!-- Card 3 -->
-        <div
-          style="background: rgba(12, 18, 32, 0.6); padding: 40px 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: left;">
-          <h3
-            style="font-size: 1.3rem; margin-bottom: 12px; color: var(--cyan); display: flex; align-items: center; gap: 10px;">
-            <i data-lucide="bell"></i> Smart Push Notifications
-          </h3>
-          <p style="font-size: 1rem; color: var(--text-secondary);">
-            Incoming alerts group cleanly by chat rather than flooding your feed. Previews are scrambled in the
-            background, keeping push channels clean and secure.
-          </p>
+          <ul class="privacy-list">
+            <li>
+              <div class="pl-icon">🗄️</div>
+              <div class="pl-text">
+                <h4>No Image Database</h4>
+                <p>Photos are stored only in your private Supabase buckets with strict user-level access controls. Nobody except the two chat participants can ever access your media.</p>
+              </div>
+            </li>
+            <li>
+              <div class="pl-icon">👻</div>
+              <div class="pl-text">
+                <h4>True Vanish Mode</h4>
+                <p>Not just "hidden" — physically destroyed. When you exit a vanish session, the app purges all local Room DB records, clears Firestore documents, and wipes Supabase media simultaneously.</p>
+              </div>
+            </li>
+            <li>
+              <div class="pl-icon">📷</div>
+              <div class="pl-text">
+                <h4>Screenshot Detection + Block</h4>
+                <p>Dual-layer protection: hardware WindowManager SECURE flags prevent screen capture, while a filesystem watcher detects screenshots and alerts you instantly in the chat timeline.</p>
+              </div>
+            </li>
+            <li>
+              <div class="pl-icon">🔗</div>
+              <div class="pl-text">
+                <h4>Connection-Only Messaging</h4>
+                <p>Your chat list is never exposed publicly. Only users you've mutually accepted as connections can message you — eliminating spam, harassment, and unwanted contact entirely.</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section (Consumer Language) -->
+  <div class="divider"></div>
+
+  <!-- Calls Section -->
+  <section id="calls">
+    <div class="container">
+      <div class="calls-layout">
+        <div class="reveal">
+          <div class="section-tag">WebRTC Technology</div>
+          <h2 class="section-title">Calls That Go <span class="grad">Straight Through</span></h2>
+          <p class="section-desc">Audio and video streams flow directly between devices — no servers intercept, record, or route your calls. True peer-to-peer privacy.</p>
+
+          <div class="calls-perks">
+            <div class="perk">
+              <div class="perk-val" style="color:var(--violet)">P2P</div>
+              <div class="perk-label">Direct Connection</div>
+            </div>
+            <div class="perk">
+              <div class="perk-val" style="color:var(--cyan)">HD</div>
+              <div class="perk-label">Video Quality</div>
+            </div>
+            <div class="perk">
+              <div class="perk-val" style="color:var(--emerald)">PiP</div>
+              <div class="perk-label">Picture-in-Picture</div>
+            </div>
+            <div class="perk">
+              <div class="perk-val" style="color:var(--amber)">0</div>
+              <div class="perk-label">Server Recordings</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="call-cards reveal reveal-2">
+          <div class="call-card">
+            <div class="call-card-icon v">📹</div>
+            <div>
+              <h3>Video Calls</h3>
+              <p>Full HD, front & rear camera, WebRTC P2P</p>
+            </div>
+            <span class="call-badge cb-p2p">P2P</span>
+          </div>
+          <div class="call-card">
+            <div class="call-card-icon c">📞</div>
+            <div>
+              <h3>Audio Calls</h3>
+              <p>Crystal clear voice, noise suppression</p>
+            </div>
+            <span class="call-badge cb-p2p">P2P</span>
+          </div>
+          <div class="call-card">
+            <div class="call-card-icon v">📳</div>
+            <div>
+              <h3>Incoming Call Alerts</h3>
+              <p>Full-screen UI with ringtone & vibration</p>
+            </div>
+            <span class="call-badge cb-live">Live</span>
+          </div>
+          <div class="call-card">
+            <div class="call-card-icon c">📋</div>
+            <div>
+              <h3>Call History</h3>
+              <p>Local call logs, stored only on device</p>
+            </div>
+            <span class="call-badge cb-live">Local</span>
+          </div>
+          <div class="call-card">
+            <div class="call-card-icon v">📱</div>
+            <div>
+              <h3>Picture-in-Picture</h3>
+              <p>Multitask without dropping your call</p>
+            </div>
+            <span class="call-badge cb-live">Android</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alarm System -->
+  <section id="alarm">
+    <div class="container">
+      <div class="alarm-layout">
+        <div class="reveal">
+          <div class="section-tag">Emergency System</div>
+          <h2 class="section-title">Alarms That Actually <span class="grad">Get Through</span></h2>
+          <p class="section-desc" style="margin-bottom:36px;">When it truly matters, GlassChat's alarm system pierces through Silent mode, DND, and app restrictions to deliver your emergency signal.</p>
+
+          <div class="alarm-steps">
+            <div class="alarm-step">
+              <div class="step-num">01</div>
+              <div class="step-text">
+                <h4>Tap Send Alarm on a Contact's Profile</h4>
+                <p>One tap from any profile preview instantly initiates an emergency alarm signal to that specific contact.</p>
+              </div>
+            </div>
+            <div class="alarm-step">
+              <div class="step-num">02</div>
+              <div class="step-text">
+                <h4>Signal Bypasses All Phone Restrictions</h4>
+                <p>The alarm uses hardware-level Android AudioManager channels that override DND, Silent Mode, and battery optimization.</p>
+              </div>
+            </div>
+            <div class="alarm-step">
+              <div class="step-num">03</div>
+              <div class="step-text">
+                <h4>Recipient Gets Full-Volume Alert</h4>
+                <p>Their device plays a direct, unmissable alarm — not a push notification. The recipient is guaranteed to hear it.</p>
+              </div>
+            </div>
+            <div class="alarm-step">
+              <div class="step-num">04</div>
+              <div class="step-text">
+                <h4>Alarm Schedules Stay in Sync</h4>
+                <p>Background SyncAlarm workers keep your mutual alarm bypass permissions synchronized so emergency channels are always ready.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alarm-features reveal reveal-2">
+          <div class="alarm-feat">
+            <div class="alarm-feat-icon">🔔</div>
+            <div>
+              <h4>DND Bypass</h4>
+              <p>Emergency alarms override Do-Not-Disturb mode at the Android system level — no workarounds, real access.</p>
+            </div>
+          </div>
+          <div class="alarm-feat">
+            <div class="alarm-feat-icon">🔄</div>
+            <div>
+              <h4>Alarm Sync Between Devices</h4>
+              <p>Both parties' alarm schedules are kept in real-time sync via background workers — mutual emergency access always active.</p>
+            </div>
+          </div>
+          <div class="alarm-feat">
+            <div class="alarm-feat-icon">🌙</div>
+            <div>
+              <h4>Boot Persistence</h4>
+              <p>Alarm schedules survive device reboots. Emergency bypass permissions are re-established automatically on startup.</p>
+            </div>
+          </div>
+          <div class="alarm-feat">
+            <div class="alarm-feat-icon">📲</div>
+            <div>
+              <h4>Smart Alarm Watchdog</h4>
+              <p>A background watchdog monitors alarm states and self-heals any sync failures automatically without user intervention.</p>
+            </div>
+          </div>
+          <div class="alarm-feat">
+            <div class="alarm-feat-icon">🎵</div>
+            <div>
+              <h4>Custom Chat Wallpapers Tied to Alarms</h4>
+              <p>Set wallpapers and alert tones per contact. Visual and audio cues combine for instant recognition of who's trying to reach you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Connections System -->
+  <section id="connections">
+    <div class="container">
+      <div class="connections-layout">
+        <div class="connections-text reveal">
+          <div class="section-tag">Social Graph</div>
+          <h2 class="section-title">Only People You <span class="grad">Actually Know</span></h2>
+          <p class="section-desc">GlassChat isn't open to strangers. Your social space is locked to mutual connections — you choose who gets access.</p>
+
+          <div class="connect-list">
+            <div class="connect-item">
+              <div class="ci-icon">🔍</div>
+              <div class="ci-text">
+                <h4>Discover by Username or Email</h4>
+                <p>Search for people you know. They won't even appear in your search unless they're also on GlassChat — complete discoverability control.</p>
+              </div>
+            </div>
+            <div class="connect-item">
+              <div class="ci-icon">🤝</div>
+              <div class="ci-text">
+                <h4>Mutual Connection Request System</h4>
+                <p>Send a connection request. Chats only open after both sides accept. No one-sided messaging, ever.</p>
+              </div>
+            </div>
+            <div class="connect-item">
+              <div class="ci-icon">🚫</div>
+              <div class="ci-text">
+                <h4>Block & Report</h4>
+                <p>Block any user instantly. Blocked users can't find you, message you, or see your profile — completely invisible to them.</p>
+              </div>
+            </div>
+            <div class="connect-item">
+              <div class="ci-icon">👤</div>
+              <div class="ci-text">
+                <h4>Custom Nicknames</h4>
+                <p>Assign custom nicknames to any connection. They see their real name; you see what makes sense to you — total personal organization.</p>
+              </div>
+            </div>
+            <div class="connect-item">
+              <div class="ci-icon">📋</div>
+              <div class="ci-text">
+                <h4>Profile Previews with Actions</h4>
+                <p>Tap any profile to see their status, send an alarm, start a call, or manage the connection — everything from one clean sheet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="connections-visual reveal reveal-2">
+          <div class="conn-ui">
+            <div class="conn-ui-header">
+              <span class="conn-ui-title">Connections</span>
+              <span class="conn-badge">● Online</span>
+            </div>
+            <div class="conn-user">
+              <div class="conn-avatar" style="background:rgba(99,179,255,0.15);color:var(--cyan)">A</div>
+              <div class="conn-info">
+                <div class="conn-name">Alex M.</div>
+                <div class="conn-status">● Active now</div>
+              </div>
+              <div class="conn-action ca-connected">Connected</div>
+            </div>
+            <div class="conn-user">
+              <div class="conn-avatar" style="background:rgba(167,139,255,0.15);color:var(--violet)">S</div>
+              <div class="conn-info">
+                <div class="conn-name">Sara K.</div>
+                <div class="conn-status">Last seen 2h ago</div>
+              </div>
+              <div class="conn-action ca-connected">Connected</div>
+            </div>
+            <div class="conn-user">
+              <div class="conn-avatar" style="background:rgba(52,211,153,0.15);color:var(--emerald)">R</div>
+              <div class="conn-info">
+                <div class="conn-name">Raj P.</div>
+                <div class="conn-status">Pending request</div>
+              </div>
+              <div class="conn-action ca-add">Accept</div>
+            </div>
+            <div class="conn-user">
+              <div class="conn-avatar" style="background:rgba(251,191,36,0.15);color:var(--amber)">M</div>
+              <div class="conn-info">
+                <div class="conn-name">Maya T.</div>
+                <div class="conn-status">Discovered nearby</div>
+              </div>
+              <div class="conn-action ca-add">Connect</div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;padding:20px 24px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);">
+            <div style="font-size:0.8rem;color:var(--text-3);margin-bottom:10px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">Privacy Note</div>
+            <p style="font-size:0.82rem;color:var(--text-2);line-height:1.6;">Your profile is never publicly indexed. Only users you share your username or email with can find and connect with you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customize & Themes -->
+  <section id="customize">
+    <div class="container">
+      <div class="reveal" style="text-align:center;margin-bottom:56px;">
+        <div class="section-tag">Personalization</div>
+        <h2 class="section-title">Make It <span class="grad">Completely Yours</span></h2>
+        <p class="section-desc" style="margin:0 auto;">GlassChat isn't just functional — it's beautiful. Customize every corner to match your style.</p>
+      </div>
+
+      <div class="customize-grid">
+        <div class="custom-card reveal">
+          <span class="custom-icon">🖼️</span>
+          <h3>Per-Chat Wallpapers</h3>
+          <p>Set a unique wallpaper background for each individual conversation. Your chat with your best friend looks different from work chats — total visual organization.</p>
+        </div>
+        <div class="custom-card reveal reveal-2">
+          <span class="custom-icon">🌙</span>
+          <h3>Dark / Light / System Themes</h3>
+          <p>Three-mode theme toggle: follow your system setting automatically, or override to pure dark or clean light. Switches in real-time with a single tap.</p>
+        </div>
+        <div class="custom-card reveal reveal-3">
+          <span class="custom-icon">✏️</span>
+          <h3>Custom Nicknames</h3>
+          <p>Rename any connection with a personal nickname. Only visible to you — their real name stays the same everywhere else.</p>
+        </div>
+        <div class="custom-card reveal">
+          <span class="custom-icon">🔔</span>
+          <h3>Per-Contact Alert Tones</h3>
+          <p>Assign custom alarm tones to specific contacts. The moment you hear their tone, you know exactly who's trying to reach you — even without looking.</p>
+        </div>
+        <div class="custom-card reveal reveal-2">
+          <span class="custom-icon">🔍</span>
+          <h3>Chat Search</h3>
+          <p>Full-text search across all your conversations. Find any message, media reference, or conversation thread instantly — powerful and completely private.</p>
+        </div>
+        <div class="custom-card reveal reveal-3">
+          <span class="custom-icon">📱</span>
+          <h3>Glassmorphic UI</h3>
+          <p>The interface is built with frosted glass aesthetics — translucent cards, depth blur, and gradient lighting that makes chatting visually stunning on any Android device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
   <section id="faq">
     <div class="container">
-      <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
-      <p style="text-align: center; max-width: 600px; margin: 0 auto 40px auto; font-size: 1.15rem;">
-        Everything you need to know about our privacy protections and features.
-      </p>
+      <div class="faq-header reveal">
+        <div class="section-tag">Got Questions?</div>
+        <h2 class="section-title">Frequently <span class="grad">Asked</span></h2>
+        <p class="section-desc">Everything you need to know, answered plainly.</p>
+      </div>
 
-      <div class="faq-list">
-        <!-- FAQ 1 -->
-        <div class="faq-item" id="faq-dnd">
-          <div class="faq-question">
-            <h3>How does the emergency DND bypass work?</h3>
-            <div class="faq-toggle">
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </div>
+      <div class="faq-grid reveal reveal-2">
+        <div class="faq-item">
+          <div class="faq-q">
+            Is GlassChat completely free?
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-          <div class="faq-answer">
-            <p>
-              When a contact initiates an emergency alarm ping (using the "Send Alarm" shortcut on your profile
-              preview), GlassChat recognizes the high-priority tag and triggers a direct, hardware-level audio alarm.
-              This override is designed strictly for urgent family matters and immediately pierces through system
-              silent/DND settings to notify you.
-            </p>
-          </div>
+          <div class="faq-a"><p>Yes — completely free, no ads, no subscriptions, no hidden costs. Download the APK and you have full access to every single feature immediately.</p></div>
         </div>
 
-        <!-- FAQ 2 -->
-        <div class="faq-item" id="faq-ss">
-          <div class="faq-question">
-            <h3>How does the screenshot shield protect me?</h3>
-            <div class="faq-toggle">
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            How does Vanish Mode actually work?
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-          <div class="faq-answer">
-            <p>
-              GlassChat utilizes hardware surface secure flags and operating system directory listeners. When a
-              screenshot key combination is pressed, the app blanks out the chat screen so only black pages are saved,
-              or blocks the system trigger entirely while sending you a real-time warning in the conversation stream.
-            </p>
-          </div>
+          <div class="faq-a"><p>When you close a Vanish Mode session, GlassChat simultaneously purges all Room database records, deletes Firestore conversation documents, and removes any uploaded media from Supabase buckets — on both devices at once.</p></div>
         </div>
 
-        <!-- FAQ 3 -->
-        <div class="faq-item" id="faq-stealth">
-          <div class="faq-question">
-            <h3>What makes low-volume alerts different from system volume?</h3>
-            <div class="faq-toggle">
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            Can anyone screenshot my chats?
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-          <div class="faq-answer">
-            <p>
-              Instead of firing the standard, loud device-wide ringtone, stealth alerts utilize low-frequency acoustic
-              whispers generated directly within the chat app. These whisper notification sounds are optimized for
-              close-range hearing, keeping you updated in silent locations without letting others notice.
-            </p>
-          </div>
+          <div class="faq-a"><p>No. GlassChat applies WindowManager SECURE flags to all chat screens. Any screenshot attempt produces a blank black image. Additionally, a file-system watcher detects attempts and alerts you in the chat immediately.</p></div>
         </div>
 
-        <!-- FAQ 4 -->
-        <div class="faq-item" id="faq-webrtc">
-          <div class="faq-question">
-            <h3>Are video and voice calls secure?</h3>
-            <div class="faq-toggle">
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            Are video and voice calls private?
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-          <div class="faq-answer">
-            <p>
-              Yes, absolutely. By using standard WebRTC connections, audio and video streams are established directly
-              between the caller and the recipient (peer-to-peer). GlassChat uses secure signaling to initiate the
-              handshakes, meaning no call data is ever recorded, routed, or listened to by central servers.
-            </p>
-          </div>
+          <div class="faq-a"><p>Completely. Calls use WebRTC — a direct peer-to-peer technology where audio/video streams go directly between the two devices. No server ever receives, records, or can intercept your call streams.</p></div>
         </div>
 
-        <!-- FAQ 5 -->
-        <div class="faq-item" id="faq-alarmsync">
-          <div class="faq-question">
-            <h3>What is Alarm Synchronization?</h3>
-            <div class="faq-toggle">
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            How does the alarm bypass DND?
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-          <div class="faq-answer">
-            <p>
-              Alarm Synchronization utilizes local background workers and real-time database observers (via
-              SyncAlarmDao) to sync alarm settings and priority bypass lists between matched contacts. If an alarm
-              configuration updates on your device, it seamlessly synchronizes with the matched receiver, ensuring
-              emergency bypass pipelines remain completely functional on both ends.
-            </p>
+          <div class="faq-a"><p>GlassChat uses Android's AlarmManager with PRIORITY_ALARM and a foreground service with the AudioManager STREAM_ALARM channel. This combination is explicitly allowed to bypass DND by Android's OS, identical to how system clock alarms work.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Are my images stored anywhere?
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
+          <div class="faq-a"><p>Images are stored in private Supabase buckets, accessible only to the two participants in that conversation. No admin, no third party, and no algorithm can access them. In Vanish Mode, they're deleted entirely.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            How does Connection-Only messaging work?
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a"><p>You can only start a conversation with users who've mutually accepted your connection request. Strangers cannot message you, cannot find you unless you share your handle, and cannot see your profile or status.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Does it work offline?
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a"><p>Yes! GlassChat is built offline-first. All messages are written to local Room SQLite storage first, so the UI updates instantly even without internet. When connectivity is restored, everything syncs automatically.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Call to Action Section -->
-  <section class="cta" id="download">
+  <!-- CTA -->
+  <section id="cta">
     <div class="container">
-      <div class="cta-box">
-        <h2 class="cta-title">Upgrade Your <span class="gradient-text">Privacy Today</span></h2>
-        <p class="cta-desc">
-          Ready to experience a gorgeous chat client protected by anti-screenshot shields, WebRTC audio/video calls, and
-          hardware media compressors?
-        </p>
-        <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-primary"
-          id="cta-install-btn">Download for Android (APK)</a>
+      <div class="cta-box reveal">
+        <div class="cta-label">Ready to switch?</div>
+        <h2>Start Chatting <span class="grad">Privately Today</span></h2>
+        <p>Join people who believe their conversations belong to them — and only them. No phone number required, no ad tracking, no compromises.</p>
+        <div class="cta-buttons">
+          <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-dl">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download for Android
+          </a>
+          <a href="#features" class="btn-ghost">View All Features</a>
+        </div>
+        <p class="cta-note">Free forever · <span>No ads</span> · Android 8.0+</p>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <div class="container footer-content">
-      <a href="#" class="footer-logo">
-        <img src="./source/logo.png" alt="GlassChat logo" class="footer-logo-img">
-        <span>GlassChat</span>
-      </a>
-      <span class="copyright">&copy; 2026 GlassChat by Nityam Kaushik. All rights reserved.</span>
-      <div class="social-links">
-        <a href="#" class="social-link" aria-label="GitHub Link"><i data-lucide="github"></i></a>
-        <a href="#" class="social-link" aria-label="Twitter Link"><i data-lucide="twitter"></i></a>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#" class="footer-logo">
+          <img src="./source/logo.png" alt="GlassChat Logo">
+          <span>GlassChat</span>
+        </a>
+        <p class="footer-copy">© 2026 GlassChat by Nityam Kaushik. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="https://github.com/nityamkaushik" target="_blank">GitHub</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk">Download</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- Script for interactivity and styling scroll -->
   <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
-
-    // Scroll header background opacity change
-    window.addEventListener('scroll', function () {
-      const header = document.getElementById('header');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+    // Nav scroll behavior
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // FAQ Accordion Interactivity
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      question.addEventListener('click', () => {
-        // Close other FAQs if open
-        faqItems.forEach(innerItem => {
-          if (innerItem !== item && innerItem.classList.contains('active')) {
-            innerItem.classList.remove('active');
-          }
-        });
-        // Toggle current FAQ
-        item.classList.toggle('active');
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-q').addEventListener('click', () => {
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
       });
     });
 
-    // Auto-trigger direct APK download after exactly 1 second
-    setTimeout(function () {
+    // Auto-download after 1.5s
+    setTimeout(() => {
       window.location.href = "https://nityamkaushik.github.io/GlassChat-release/app-release.apk";
-    }, 1000);
+    }, 1500);
   </script>
 </body>
-
 </html>
