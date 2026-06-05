@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy &mdash; GlassChat</title>
+    <meta name="description" content="GlassChat privacy policy covering encryption, data collection, third-party services, local storage, and user rights.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        :root {
+            --ink: #0d0d0f;
+            --ink2: #3a3a44;
+            --ink3: #747482;
+            --paper: #f7f5f0;
+            --paper2: #eeeae2;
+            --paper3: #e4dfd5;
+            --gold: #c9a84c;
+            --gold2: #e8c96b;
+            --teal: #2a7d7b;
+            --teal2: #3a9e9c;
+            --rose: #c45c5c;
+            --radius: 20px;
+            --shadow: 0 2px 24px rgba(13, 13, 15, 0.08);
+        }
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(135deg, rgba(42, 125, 123, 0.08), transparent 36%),
+                linear-gradient(225deg, rgba(201, 168, 76, 0.1), transparent 40%),
+                var(--paper);
+            color: var(--ink);
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='512' height='512' fill='black' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        a { color: var(--teal); }
+        a:focus-visible {
+            outline: 2px solid var(--teal);
+            outline-offset: 4px;
+            border-radius: 6px;
+        }
+        .skip-link {
+            position: absolute;
+            top: -48px;
+            left: 16px;
+            z-index: 1000;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 10px 14px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        .skip-link:focus { top: 16px; }
+        .wrap {
+            width: min(100% - 32px, 1040px);
+            margin: 0 auto;
+        }
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(247, 245, 240, 0.88);
+            border-bottom: 1px solid var(--paper3);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+        .nav-inner {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .logo img { width: 34px; height: 34px; object-fit: contain; }
+        .logo span {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 1.18rem;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--ink2);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 9px;
+        }
+        .nav-links a:hover { background: var(--paper2); color: var(--ink); }
+        main {
+            padding: 64px 0 84px;
+        }
+        .legal-header {
+            max-width: 780px;
+            margin-bottom: 34px;
+        }
+        .eyebrow {
+            color: var(--teal);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        h1, h2, h3 {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
+            line-height: 1.12;
+            color: var(--ink);
+        }
+        h1 {
+            font-size: clamp(2.6rem, 7vw, 4.8rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        .last-updated {
+            margin-top: 18px;
+            color: #7a5b18;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.82rem;
+        }
+        .intro {
+            max-width: 780px;
+            margin-top: 18px;
+            color: var(--ink2);
+            font-size: 1.06rem;
+        }
+        .toc {
+            background: rgba(255, 255, 255, 0.66);
+            border: 1px solid rgba(228, 223, 213, 0.88);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 24px;
+            margin: 34px 0;
+        }
+        .toc h2 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 18px;
+        }
+        .toc a {
+            color: var(--ink2);
+            text-decoration: none;
+            font-size: 0.94rem;
+        }
+        .toc a:hover { color: var(--teal); }
+        .legal-section {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(228, 223, 213, 0.9);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 30px;
+            margin: 18px 0;
+        }
+        .legal-section h2 {
+            color: var(--teal);
+            font-size: clamp(1.35rem, 3vw, 1.9rem);
+            margin-bottom: 14px;
+        }
+        .legal-section h3 {
+            color: var(--ink);
+            font-size: 1.08rem;
+            margin: 18px 0 8px;
+        }
+        .legal-section p,
+        .legal-section li {
+            color: var(--ink2);
+            margin-bottom: 10px;
+        }
+        .legal-section ul {
+            padding-left: 20px;
+        }
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+        .flow-step {
+            border: 1px solid var(--paper3);
+            border-radius: 16px;
+            background: rgba(247, 245, 240, 0.8);
+            padding: 18px;
+        }
+        .flow-step strong {
+            display: block;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .contact-link {
+            display: inline-flex;
+            margin-top: 8px;
+            font-weight: 700;
+        }
+        .site-footer {
+            background: var(--ink);
+            color: rgba(247, 245, 240, 0.72);
+            padding: 34px 0;
+        }
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: rgba(247, 245, 240, 0.72);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover { color: var(--paper); }
+        @media (max-width: 760px) {
+            .nav-inner { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+            .nav-links { flex-wrap: wrap; }
+            main { padding-top: 42px; }
+            .toc ul { grid-template-columns: 1fr; }
+            .legal-section { padding: 22px; }
+            .flow { grid-template-columns: 1fr; }
+            .footer-inner { align-items: flex-start; flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="site-nav" aria-label="Legal page navigation">
+        <div class="nav-inner wrap">
+            <a class="logo" href="index.html" aria-label="Back to GlassChat home">
+                <img src="https://raw.githubusercontent.com/nityamkaushik/GlassChat-release/main/source/logo.png" alt="GlassChat logo">
+                <span>GlassChat</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="index.html#cta">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" class="wrap">
+        <article>
+            <header class="legal-header">
+                <div class="eyebrow">Legal Documentation</div>
+                <h1>Privacy Policy</h1>
+                <p class="last-updated">Last Updated: January 1, 2026</p>
+                <p class="intro">GlassChat is built to minimize plaintext exposure. We collect the information needed to run accounts, messages, media, calls, safety controls, and push delivery while encrypting private content before it leaves user devices.</p>
+            </header>
+
+            <nav class="toc" aria-label="Privacy policy table of contents">
+                <h2>Contents</h2>
+                <ul>
+                    <li><a href="#collection">Information We Collect</a></li>
+                    <li><a href="#encryption">Encryption Details</a></li>
+                    <li><a href="#encrypted">What's Encrypted</a></li>
+                    <li><a href="#keys">Key Storage</a></li>
+                    <li><a href="#zero-knowledge">Zero-Knowledge Architecture</a></li>
+                    <li><a href="#services">Third-Party Services</a></li>
+                    <li><a href="#third-parties">What Third Parties See</a></li>
+                    <li><a href="#local-storage">Local Storage</a></li>
+                    <li><a href="#rights">User Rights</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <section id="collection" class="legal-section">
+                <h2>Information We Collect</h2>
+                <ul>
+                    <li><strong>Account data:</strong> email address, username, display name, Firebase user ID, and authentication state.</li>
+                    <li><strong>Profile data:</strong> avatar, profile bio, phone number if provided, privacy settings, blocked users, active sessions, and device preferences.</li>
+                    <li><strong>Communication data:</strong> encrypted messages, encrypted media files, encrypted call signaling data, call logs, delivery status, read receipts, typing state, and presence signals.</li>
+                    <li><strong>Device data:</strong> push notification device tokens, session identifiers, app version, and local settings needed for notifications and account security.</li>
+                </ul>
+            </section>
+
+            <section id="encryption" class="legal-section">
+                <h2>Encryption Details</h2>
+                <p>Message content is protected with <strong>AES-256-GCM</strong> using 256-bit keys.</p>
+                <p>Conversation keys are established with <strong>X25519 ECDH</strong>, which provides a 256-bit security level, and derived with <strong>HKDF-SHA256</strong>.</p>
+                <p>Local cache data is protected by <strong>SQLCipher with AES-256-CBC</strong>. Private keys, credentials, and sensitive tokens are stored with <strong>EncryptedSharedPreferences backed by Android Keystore</strong>.</p>
+                <div class="flow" aria-label="Encryption flow diagram">
+                    <div class="flow-step">
+                        <strong>Sender Device</strong>
+                        <p>Plaintext is encrypted locally with AES-256-GCM before upload.</p>
+                    </div>
+                    <div class="flow-step">
+                        <strong>Firebase / Supabase</strong>
+                        <p>Servers store and route ciphertext only. They cannot decrypt without endpoint keys.</p>
+                    </div>
+                    <div class="flow-step">
+                        <strong>Receiver Device</strong>
+                        <p>Ciphertext is delivered and decrypted locally on the receiver's device.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="encrypted" class="legal-section">
+                <h2>What's Encrypted</h2>
+                <p>Message content and replies are encrypted with the conversation key before upload.</p>
+                <p>Media files, including images, videos, voice notes, and documents, are encrypted with per-media file keys.</p>
+                <p>Call signaling data, profile bio, phone number, push notification previews, conversation last messages, local credentials, local message cache, and call logs are encrypted or stripped so services cannot read private content.</p>
+            </section>
+
+            <section id="keys" class="legal-section">
+                <h2>Key Storage</h2>
+                <p>Private keys and sensitive credentials are stored in EncryptedSharedPreferences backed by Android Keystore.</p>
+                <p>Android Keystore backing helps keep key material isolated from normal app storage. If an account is deleted, locally stored encryption keys are deleted with that account state.</p>
+            </section>
+
+            <section id="zero-knowledge" class="legal-section">
+                <h2>Zero-Knowledge Architecture</h2>
+                <p>GlassChat server operators cannot decrypt user messages or media because decryption keys remain on endpoint devices.</p>
+                <p>Firebase, Supabase, and notification infrastructure process ciphertext, routing data, or generic delivery metadata. They do not receive the keys required to turn ciphertext back into plaintext.</p>
+            </section>
+
+            <section id="services" class="legal-section">
+                <h2>Third-Party Services</h2>
+                <ul>
+                    <li><strong>Firebase Authentication:</strong> user identity management. Data access: email, username, user ID.</li>
+                    <li><strong>Firebase Firestore:</strong> encrypted message storage and call signaling. Data access: encrypted message content only.</li>
+                    <li><strong>Supabase Storage:</strong> encrypted media file storage. Data access: encrypted files only.</li>
+                    <li><strong>OneSignal:</strong> push notifications. Data access: device tokens and generic notification payloads.</li>
+                    <li><strong>Stream WebRTC:</strong> peer-to-peer call facilitation. Data access: encrypted SDP offers, answers, and ICE candidates.</li>
+                </ul>
+            </section>
+
+            <section id="third-parties" class="legal-section">
+                <h2>What Third Parties See</h2>
+                <p>Firebase Authentication sees account identity data such as email, username, and user ID.</p>
+                <p>Firebase Firestore stores encrypted message content and encrypted call signaling; it cannot decrypt user content.</p>
+                <p>Supabase Storage receives encrypted media files only and cannot decrypt them.</p>
+                <p>OneSignal receives device tokens and generic "New message" notifications with encrypted preview data in the payload.</p>
+                <p>Stream WebRTC sees encrypted SDP offers, answers, and ICE candidates. No third-party service receives the keys needed to decrypt private content.</p>
+            </section>
+
+            <section id="local-storage" class="legal-section">
+                <h2>Local Storage</h2>
+                <p>GlassChat uses SQLCipher with AES-256-CBC for the local database and EncryptedSharedPreferences backed by Android Keystore for credentials, tokens, and private key material.</p>
+                <p>Users can clear local message cache from Settings. Clearing local cache removes local copies and allows server-backed encrypted records to resync where available.</p>
+            </section>
+
+            <section id="rights" class="legal-section">
+                <h2>User Rights</h2>
+                <ul>
+                    <li>Access stored account data and review profile, privacy, and active-session settings.</li>
+                    <li>Export conversation history where the app provides export controls.</li>
+                    <li>Request account deletion and data deletion by contacting support.</li>
+                    <li>Clear local message cache from Settings and revoke active sessions from Settings.</li>
+                    <li>Block other users to prevent contact.</li>
+                    <li>Have local encryption keys deleted with account deletion state.</li>
+                    <li>Have deleted messages removed from Firestore according to the deletion request and available retention controls.</li>
+                    <li>Encrypted media files remain in Supabase Storage until manually deleted or after 90 days of inactivity.</li>
+                </ul>
+            </section>
+
+            <section id="contact" class="legal-section">
+                <h2>Contact</h2>
+                <p>For privacy questions, access requests, exports, or deletion requests, contact the GlassChat team.</p>
+                <a class="contact-link" href="mailto:support@glasschat.example.com">support@glasschat.example.com</a>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner wrap">
+            <p>GlassChat &copy; 2026 Team Nityam</p>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="index.html#cta">Download</a>
+                <a href="mailto:support@glasschat.example.com">Support</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+</html>

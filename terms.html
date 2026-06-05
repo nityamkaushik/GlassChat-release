@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms &amp; Conditions &mdash; GlassChat</title>
+    <meta name="description" content="GlassChat terms and conditions covering user responsibilities, acceptable use, emergency alarm limits, vanish mode, screenshot shield, and liability.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        :root {
+            --ink: #0d0d0f;
+            --ink2: #3a3a44;
+            --ink3: #747482;
+            --paper: #f7f5f0;
+            --paper2: #eeeae2;
+            --paper3: #e4dfd5;
+            --gold: #c9a84c;
+            --gold2: #e8c96b;
+            --teal: #2a7d7b;
+            --teal2: #3a9e9c;
+            --rose: #b94545;
+            --radius: 20px;
+            --shadow: 0 2px 24px rgba(13, 13, 15, 0.08);
+        }
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(135deg, rgba(42, 125, 123, 0.08), transparent 36%),
+                linear-gradient(225deg, rgba(201, 168, 76, 0.1), transparent 40%),
+                var(--paper);
+            color: var(--ink);
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='512' height='512' fill='black' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        a { color: var(--teal); }
+        a:focus-visible {
+            outline: 2px solid var(--teal);
+            outline-offset: 4px;
+            border-radius: 6px;
+        }
+        .skip-link {
+            position: absolute;
+            top: -48px;
+            left: 16px;
+            z-index: 1000;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 10px 14px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        .skip-link:focus { top: 16px; }
+        .wrap {
+            width: min(100% - 32px, 1040px);
+            margin: 0 auto;
+        }
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(247, 245, 240, 0.88);
+            border-bottom: 1px solid var(--paper3);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+        .nav-inner {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .logo img { width: 34px; height: 34px; object-fit: contain; }
+        .logo span {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 1.18rem;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--ink2);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 9px;
+        }
+        .nav-links a:hover { background: var(--paper2); color: var(--ink); }
+        main {
+            padding: 64px 0 84px;
+        }
+        .legal-header {
+            max-width: 780px;
+            margin-bottom: 34px;
+        }
+        .eyebrow {
+            color: var(--teal);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        h1, h2 {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
+            line-height: 1.12;
+            color: var(--ink);
+        }
+        h1 {
+            font-size: clamp(2.6rem, 7vw, 4.8rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        .last-updated {
+            margin-top: 18px;
+            color: #7a5b18;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.82rem;
+        }
+        .intro {
+            max-width: 780px;
+            margin-top: 18px;
+            color: var(--ink2);
+            font-size: 1.06rem;
+        }
+        .toc {
+            background: rgba(255, 255, 255, 0.66);
+            border: 1px solid rgba(228, 223, 213, 0.88);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 24px;
+            margin: 34px 0;
+        }
+        .toc h2 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 18px;
+        }
+        .toc a {
+            color: var(--ink2);
+            text-decoration: none;
+            font-size: 0.94rem;
+        }
+        .toc a:hover { color: var(--teal); }
+        .legal-section {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(228, 223, 213, 0.9);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 30px;
+            margin: 18px 0;
+        }
+        .legal-section h2 {
+            color: var(--teal);
+            font-size: clamp(1.35rem, 3vw, 1.9rem);
+            margin-bottom: 14px;
+        }
+        .legal-section p,
+        .legal-section li {
+            color: var(--ink2);
+            margin-bottom: 10px;
+        }
+        .legal-section ul {
+            padding-left: 20px;
+        }
+        .disclaimer {
+            border: 2px solid rgba(185, 69, 69, 0.55);
+            background: rgba(185, 69, 69, 0.09);
+        }
+        .disclaimer h2 { color: var(--rose); }
+        .disclaimer strong {
+            color: #8c1f1f;
+            font-weight: 700;
+        }
+        .contact-link {
+            display: inline-flex;
+            margin-top: 8px;
+            font-weight: 700;
+        }
+        .site-footer {
+            background: var(--ink);
+            color: rgba(247, 245, 240, 0.72);
+            padding: 34px 0;
+        }
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: rgba(247, 245, 240, 0.72);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover { color: var(--paper); }
+        @media (max-width: 760px) {
+            .nav-inner { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+            .nav-links { flex-wrap: wrap; }
+            main { padding-top: 42px; }
+            .toc ul { grid-template-columns: 1fr; }
+            .legal-section { padding: 22px; }
+            .footer-inner { align-items: flex-start; flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="site-nav" aria-label="Legal page navigation">
+        <div class="nav-inner wrap">
+            <a class="logo" href="index.html" aria-label="Back to GlassChat home">
+                <img src="https://raw.githubusercontent.com/nityamkaushik/GlassChat-release/main/source/logo.png" alt="GlassChat logo">
+                <span>GlassChat</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="index.html#cta">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content" class="wrap">
+        <article>
+            <header class="legal-header">
+                <div class="eyebrow">Legal Documentation</div>
+                <h1>Terms &amp; Conditions</h1>
+                <p class="last-updated">Last Updated: January 1, 2026</p>
+                <p class="intro">These terms govern your use of GlassChat. By creating an account, signing in, or using the app, you agree to follow these terms and all applicable laws.</p>
+            </header>
+
+            <nav class="toc" aria-label="Terms and conditions table of contents">
+                <h2>Contents</h2>
+                <ul>
+                    <li><a href="#agreement">User Agreement</a></li>
+                    <li><a href="#registration">Registration Requirements</a></li>
+                    <li><a href="#acceptable-use">Acceptable Use Policy</a></li>
+                    <li><a href="#emergency">Emergency Alarm Feature</a></li>
+                    <li><a href="#vanish">Vanish Mode Disclaimer</a></li>
+                    <li><a href="#screenshot">Screenshot Shield Disclaimer</a></li>
+                    <li><a href="#content">Content Policy</a></li>
+                    <li><a href="#availability">Service Availability</a></li>
+                    <li><a href="#liability">Liability Limitations</a></li>
+                    <li><a href="#termination">Account Termination</a></li>
+                    <li><a href="#backup">Backup Recommendations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <section id="agreement" class="legal-section">
+                <h2>User Agreement</h2>
+                <p>Creating an account or continuing to use GlassChat binds you to these Terms &amp; Conditions.</p>
+                <p>If you do not agree with these terms, do not create an account or use the service.</p>
+            </section>
+
+            <section id="registration" class="legal-section">
+                <h2>Registration Requirements</h2>
+                <p>You must provide accurate account information, including an active email address, username, and display name.</p>
+                <p>You are responsible for protecting your credentials and for activity performed through your account.</p>
+                <p>You must keep your device and account access secure, including by revoking sessions you no longer recognize.</p>
+            </section>
+
+            <section id="acceptable-use" class="legal-section">
+                <h2>Acceptable Use Policy</h2>
+                <ul>
+                    <li>Do not distribute malicious software, exploit code, or content intended to harm GlassChat, users, devices, or services.</li>
+                    <li>Do not impersonate another user, misrepresent your identity, spam users, or send unsolicited bulk content.</li>
+                    <li>Do not bypass another user's block decision or try to access another user's private data, storage paths, encrypted keys, sessions, or devices.</li>
+                </ul>
+            </section>
+
+            <section id="emergency" class="legal-section disclaimer">
+                <h2>Emergency Alarm Feature</h2>
+                <p><strong>IMPORTANT:</strong> Emergency Alarm is <strong>NOT a replacement for medical alert systems</strong> and is <strong>NOT a replacement for 911 or professional emergency services</strong>.</p>
+                <ul>
+                    <li>Reliability depends on network connectivity, device battery, operating-system permissions, notification delivery, and recipient device status.</li>
+                    <li>Emergency Alarm may fail if the recipient's device is off, out of battery, offline, muted by system policy, or unable to receive notifications.</li>
+                    <li>Bypassing Do Not Disturb requires specific Android permissions and may not work unless the recipient has granted those permissions.</li>
+                    <li>Use Emergency Alarm only for genuine emergencies or urgent, time-sensitive safety needs.</li>
+                    <li>Users who require medical alerts should use dedicated medical alert systems and local emergency services.</li>
+                    <li>Misuse, harassment, spam, or repeated false alarms may result in account suspension or termination.</li>
+                </ul>
+            </section>
+
+            <section id="vanish" class="legal-section">
+                <h2>Vanish Mode Disclaimer</h2>
+                <p>Vanish Mode messages auto-delete after a configured timer, but deletion does not guarantee that a recipient never saw or copied the content.</p>
+                <p>Vanish Mode does not prevent recipients from photographing the screen with another device.</p>
+                <p>Vanish Mode may not prevent screenshots on rooted devices, modified Android ROMs, or devices with compromised system protections.</p>
+                <p>Share sensitive ephemeral content only with verified contacts you trust.</p>
+            </section>
+
+            <section id="screenshot" class="legal-section">
+                <h2>Screenshot Shield Disclaimer</h2>
+                <p>Screenshot Shield uses Android <strong>FLAG_SECURE</strong> to request OS-level screenshot and screen-recording protection.</p>
+                <p>FLAG_SECURE may not work on rooted devices, modified Android ROMs, all Android versions, or all screen recording methods.</p>
+                <p>No app-level screenshot shield can prevent external-camera capture.</p>
+            </section>
+
+            <section id="content" class="legal-section">
+                <h2>Content Policy</h2>
+                <p>You may not use GlassChat to send, request, store, or distribute illegal content.</p>
+                <p>Harassment, hate speech, threats, exploitation, and child sexual abuse material are prohibited.</p>
+                <p>We may restrict, suspend, or terminate accounts involved in serious abuse or legal violations.</p>
+            </section>
+
+            <section id="availability" class="legal-section">
+                <h2>Service Availability</h2>
+                <p>GlassChat is provided <strong>as is</strong> and <strong>as available</strong> without guaranteed uptime, message delivery, call availability, or notification delivery.</p>
+                <p>Service quality can be affected by networks, devices, operating systems, third-party services, server maintenance, and app updates.</p>
+            </section>
+
+            <section id="liability" class="legal-section">
+                <h2>Liability Limitations</h2>
+                <p>To the maximum extent permitted by law, GlassChat and its maintainers are not liable for data loss, service interruptions, notification failures, emergency alarm failures, third-party actions, or user misuse.</p>
+                <p>You are responsible for deciding whether GlassChat is appropriate for your communication, safety, and backup needs.</p>
+            </section>
+
+            <section id="termination" class="legal-section">
+                <h2>Account Termination</h2>
+                <p>We reserve the right to suspend or terminate accounts for violations of these terms, abuse, safety risks, security incidents, or legal requirements.</p>
+                <p>We may restrict usernames, close active sessions, or limit account capabilities when needed to protect users and the service.</p>
+            </section>
+
+            <section id="backup" class="legal-section">
+                <h2>Backup Recommendations</h2>
+                <p>Export important conversations regularly where export controls are available.</p>
+                <p>Do not rely on a single device or cloud provider as the only copy of information you cannot afford to lose.</p>
+            </section>
+
+            <section id="contact" class="legal-section">
+                <h2>Contact</h2>
+                <p>For terms questions or legal inquiries, contact the GlassChat team.</p>
+                <a class="contact-link" href="mailto:support@glasschat.example.com">support@glasschat.example.com</a>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner wrap">
+            <p>GlassChat &copy; 2026 Team Nityam</p>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="index.html#cta">Download</a>
+                <a href="mailto:support@glasschat.example.com">Support</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+</html>

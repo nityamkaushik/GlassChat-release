@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlassChat — Privacy Redefined</title>
     <meta name="description"
-        content="GlassChat is a premium, privacy-first Android messenger. Vanish Mode, Screenshot Shield, P2P WebRTC Calls, Connection-Only Chats, Smart Alarm Sync, and zero image tracking.">
+        content="GlassChat is a premium, privacy-first Android messenger with military-grade end-to-end encryption. AES-256-GCM encryption, X25519 ECDH key exchange, encrypted local storage, Vanish Mode, Screenshot Shield, P2P WebRTC Calls, and zero tracking.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -1540,14 +1540,20 @@
             color: rgba(247, 245, 240, 0.8);
         }
 
-        .footer-copy {
+        .footer-copy,
+        .footer-copyright {
             font-size: 0.82rem;
             color: rgba(247, 245, 240, 0.25);
         }
 
         .footer-links {
             display: flex;
-            gap: 24px;
+            gap: 20px;
+            flex-wrap: wrap;
+            inset: auto;
+            padding: 0;
+            position: static;
+            z-index: auto;
         }
 
         .footer-links a {
@@ -1645,16 +1651,26 @@
             .cust-grid {
                 grid-template-columns: 1fr;
             }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 
-<body>
+<body id="top">
 
     <!-- NAV -->
     <nav id="nav">
         <div class="nav-inner">
-            <a href="#" class="logo">
+            <a href="#top" class="logo">
                 <div class="logo-icon">
                     <img src="https://raw.githubusercontent.com/nityamkaushik/GlassChat-release/main/source/logo.png"
                         alt="GlassChat Logo">
@@ -1673,17 +1689,16 @@
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- HERO -->
     <div style="position:relative;overflow:hidden;">
         <div class="hero-blob blob-1"></div>
         <div class="hero-blob blob-2"></div>
         <div class="hero">
             <div class="hero-left">
-                <div class="hero-tag">Now available · Android 8.0+</div>
+                <div class="hero-tag">Now available · Android 8.0+ · v4.0.0</div>
                 <h1>Chat without<br>leaving a <em>trace.</em></h1>
-                <p class="hero-sub">GlassChat is the privacy-first messenger that actually delivers — Vanish Mode,
-                    screenshot blocking, P2P calls, and a glassmorphic UI that makes every conversation feel private.
-                </p>
+                <p class="hero-sub">GlassChat is the privacy-first messenger with military-grade end-to-end encryption — AES-256-GCM, encrypted local storage, zero-knowledge architecture, Vanish Mode, screenshot blocking, and P2P calls.</p>
                 <div class="hero-btns">
                     <a href="https://nityamkaushik.github.io/GlassChat-release/app-release.apk" class="btn-main"
                         id="downloadBtn">
@@ -1698,8 +1713,8 @@
                 </div>
                 <div class="version-selector" id="versionSelector"></div>
                 <div class="hero-stats">
-                    <div class="hero-stat"><span class="n">0</span><span class="l">Ads ever</span></div>
-                    <div class="hero-stat"><span class="n">P2P</span><span class="l">WebRTC Calls</span></div>
+                    <div class="hero-stat"><span class="n">AES-256</span><span class="l">Military Grade</span></div>
+                    <div class="hero-stat"><span class="n">E2EE</span><span class="l">All Messages</span></div>
                     <div class="hero-stat"><span class="n">100%</span><span class="l">Free forever</span></div>
                 </div>
             </div>
@@ -1755,27 +1770,27 @@
     <!-- MARQUEE -->
     <div class="marquee-wrap">
         <div class="marquee-track">
+            <div class="marquee-item"><span class="dot">◆</span> AES-256-GCM Encryption</div>
+            <div class="marquee-item"><span class="dot">◆</span> X25519 ECDH Key Exchange</div>
+            <div class="marquee-item"><span class="dot">◆</span> Encrypted Local Storage</div>
+            <div class="marquee-item"><span class="dot">◆</span> Encrypted Media Files</div>
             <div class="marquee-item"><span class="dot">◆</span> Vanish Mode</div>
             <div class="marquee-item"><span class="dot">◆</span> Screenshot Shield</div>
             <div class="marquee-item"><span class="dot">◆</span> P2P WebRTC Calls</div>
-            <div class="marquee-item"><span class="dot">◆</span> Connection-Only Chats</div>
-            <div class="marquee-item"><span class="dot">◆</span> Smart Alarm Sync</div>
-            <div class="marquee-item"><span class="dot">◆</span> Per-Chat Wallpapers</div>
-            <div class="marquee-item"><span class="dot">◆</span> Voice Notes</div>
-            <div class="marquee-item"><span class="dot">◆</span> Offline-First</div>
-            <div class="marquee-item"><span class="dot">◆</span> Zero Ad Tracking</div>
-            <div class="marquee-item"><span class="dot">◆</span> Glassmorphic UI</div>
+            <div class="marquee-item"><span class="dot">◆</span> Encrypted Push Notifications</div>
+            <div class="marquee-item"><span class="dot">◆</span> Zero-Knowledge Architecture</div>
+            <div class="marquee-item"><span class="dot">◆</span> Hardware-Accelerated Video</div>
             <!-- duplicate for loop -->
+            <div class="marquee-item"><span class="dot">◆</span> AES-256-GCM Encryption</div>
+            <div class="marquee-item"><span class="dot">◆</span> X25519 ECDH Key Exchange</div>
+            <div class="marquee-item"><span class="dot">◆</span> Encrypted Local Storage</div>
+            <div class="marquee-item"><span class="dot">◆</span> Encrypted Media Files</div>
             <div class="marquee-item"><span class="dot">◆</span> Vanish Mode</div>
             <div class="marquee-item"><span class="dot">◆</span> Screenshot Shield</div>
             <div class="marquee-item"><span class="dot">◆</span> P2P WebRTC Calls</div>
-            <div class="marquee-item"><span class="dot">◆</span> Connection-Only Chats</div>
-            <div class="marquee-item"><span class="dot">◆</span> Smart Alarm Sync</div>
-            <div class="marquee-item"><span class="dot">◆</span> Per-Chat Wallpapers</div>
-            <div class="marquee-item"><span class="dot">◆</span> Voice Notes</div>
-            <div class="marquee-item"><span class="dot">◆</span> Offline-First</div>
-            <div class="marquee-item"><span class="dot">◆</span> Zero Ad Tracking</div>
-            <div class="marquee-item"><span class="dot">◆</span> Glassmorphic UI</div>
+            <div class="marquee-item"><span class="dot">◆</span> Encrypted Push Notifications</div>
+            <div class="marquee-item"><span class="dot">◆</span> Zero-Knowledge Architecture</div>
+            <div class="marquee-item"><span class="dot">◆</span> Hardware-Accelerated Video</div>
         </div>
     </div>
 
@@ -1784,76 +1799,75 @@
         <div class="wrap">
             <div class="features-header">
                 <div class="section-tag">What makes us different</div>
-                <h2 class="section-title">Privacy that <em>actually works.</em></h2>
-                <p class="section-sub">No ads. No tracking. No nonsense. Just pure privacy with features that make a
-                    difference.</p>
+                <h2 class="section-title">Military-grade <em>encryption.</em></h2>
+                <p class="section-sub">End-to-end encryption on every message, media file, and call. Your data is encrypted before it ever leaves your device.</p>
             </div>
 
             <div class="bento">
                 <div class="bcard bc-1 reveal reveal-d1">
-                    <div class="bcard-icon ic-teal">🫥</div>
+                    <div class="bcard-icon ic-teal">🔐</div>
+                    <h3>AES-256-GCM Encryption</h3>
+                    <p>Military-grade encryption on all messages, media, and calls. Only you and the recipient can decrypt.</p>
+                </div>
+
+                <div class="bcard bc-2 reveal reveal-d2">
+                    <div class="bcard-icon ic-gold">🔑</div>
+                    <h3>X25519 ECDH Key Exchange</h3>
+                    <p>Secure Diffie-Hellman key agreement with perfect forward secrecy. Keys are never transmitted.</p>
+                </div>
+
+                <div class="bcard bc-3 reveal reveal-d3">
+                    <div class="bcard-icon ic-rose">💾</div>
+                    <h3>Encrypted Local Storage</h3>
+                    <p>SQLCipher AES-256 database encryption. Your message history is encrypted on device.</p>
+                </div>
+
+                <div class="bcard bc-4 reveal reveal-d1">
+                    <div class="bcard-icon ic-ink">📁</div>
+                    <h3>Encrypted Media Files</h3>
+                    <p>Images, videos, voice notes, and documents are encrypted before upload with per-file keys.</p>
+                </div>
+
+                <div class="bcard bc-5 reveal reveal-d2">
+                    <div class="bcard-icon ic-teal">🔔</div>
+                    <h3>Content-Stripped Push</h3>
+                    <p>Push notifications never expose message content. Preview is encrypted in data payload.</p>
+                </div>
+
+                <div class="bcard bc-6 reveal reveal-d3">
+                    <div class="bcard-icon ic-gold">📞</div>
+                    <h3>Encrypted Call Signaling</h3>
+                    <p>WebRTC SDP offers, ICE candidates, and caller info are encrypted before transmission.</p>
+                </div>
+
+                <div class="bcard bc-7 reveal reveal-d1">
+                    <div class="bcard-icon ic-rose">🫥</div>
                     <h3>Vanish Mode</h3>
                     <p>Messages disappear automatically. No history, no traces, no second thoughts.</p>
                 </div>
 
-                <div class="bcard bc-2 reveal reveal-d2">
-                    <div class="bcard-icon ic-gold">📵</div>
+                <div class="bcard bc-8 reveal reveal-d2">
+                    <div class="bcard-icon ic-ink">📵</div>
                     <h3>Screenshot Shield</h3>
                     <p>Prevent screenshots from being taken. Your privacy is protected at the OS level.</p>
                 </div>
 
-                <div class="bcard bc-3 reveal reveal-d3">
-                    <div class="bcard-icon ic-rose">🎯</div>
-                    <h3>100% Free</h3>
-                    <p>No premium tiers, no ads, no tracking. Privacy shouldn't cost you.</p>
-                </div>
-
-                <div class="bcard bc-4 reveal reveal-d1">
-                    <div class="bcard-icon ic-ink">🔒</div>
-                    <h3>End-to-End Encrypted</h3>
-                    <p>Military-grade encryption on every message. Only you and the recipient can read.</p>
-                </div>
-
-                <div class="bcard bc-5 reveal reveal-d2">
-                    <div class="bcard-icon ic-teal">📞</div>
-                    <h3>P2P WebRTC Calls</h3>
-                    <p>Direct peer-to-peer video & audio calls. No servers in between. Maximum privacy.</p>
-                </div>
-
-                <div class="bcard bc-6 reveal reveal-d3">
-                    <div class="bcard-icon ic-gold">🌐</div>
-                    <h3>Offline Mode</h3>
-                    <p>Send messages without internet. They sync when you reconnect. Privacy doesn't need WiFi.</p>
-                </div>
-
-                <div class="bcard bc-7 reveal reveal-d1">
-                    <div class="bcard-icon ic-rose">🚨</div>
-                    <h3>Smart Alarm Sync</h3>
-                    <p>Set alarms together with friends. Perfect for never missing important moments.</p>
-                </div>
-
-                <div class="bcard bc-8 reveal reveal-d2">
-                    <div class="bcard-icon ic-ink">🎨</div>
-                    <h3>Per-Chat Wallpapers</h3>
-                    <p>Customize each conversation with unique themes. Make every chat feel personal.</p>
-                </div>
-
                 <div class="bcard bc-9 reveal reveal-d3">
                     <div class="bcard-icon ic-teal">🎤</div>
-                    <h3>Voice Notes</h3>
-                    <p>Send encrypted voice messages. Sometimes talking is faster than typing.</p>
+                    <h3>Voice & Video Calls</h3>
+                    <p>Peer-to-peer WebRTC with hardware-accelerated compression. Crystal clear, fully encrypted.</p>
                 </div>
 
                 <div class="bcard bc-10 reveal reveal-d1">
-                    <div class="bcard-icon ic-gold">✨</div>
-                    <h3>Glassmorphic UI</h3>
-                    <p>Beautiful, modern interface with frosted glass design. Privacy with style.</p>
+                    <div class="bcard-icon ic-gold">⚡</div>
+                    <h3>Offline-First Architecture</h3>
+                    <p>Room database with encrypted sync. Send messages without internet, they sync when you reconnect.</p>
                 </div>
 
                 <div class="bcard bc-11 reveal reveal-d2">
-                    <div class="bcard-icon ic-rose">⚡</div>
-                    <h3>Lightning Fast</h3>
-                    <p>Optimized for speed. Messaging that feels instant, privacy that's always on.</p>
+                    <div class="bcard-icon ic-rose">✨</div>
+                    <h3>Glassmorphic UI</h3>
+                    <p>Beautiful Material 3 design with frosted glass effects. Privacy with style.</p>
                 </div>
             </div>
         </div>
@@ -1894,16 +1908,16 @@
                 <div class="pd-right reveal reveal-d2">
                     <h3>Your data is<br><em>yours alone.</em></h3>
                     <div class="pd-checks">
-                        <div class="pd-check">No metadata collection</div>
-                        <div class="pd-check">No IP logging</div>
-                        <div class="pd-check">No user profiling</div>
-                        <div class="pd-check">No third-party sharing</div>
-                        <div class="pd-check">No backdoors</div>
-                        <div class="pd-check">No government requests</div>
+                        <div class="pd-check">AES-256-GCM encryption (messages, media, calls)</div>
+                        <div class="pd-check">X25519 ECDH key exchange with HKDF-SHA256</div>
+                        <div class="pd-check">Encrypted local storage (SQLCipher AES-256)</div>
+                        <div class="pd-check">EncryptedSharedPreferences for credentials</div>
+                        <div class="pd-check">Per-file encryption keys for media</div>
+                        <div class="pd-check">Content-stripped push notifications</div>
+                        <div class="pd-check">Zero-knowledge architecture</div>
                     </div>
                     <div class="pd-divider"></div>
-                    <div class="pd-tech"><strong>Under the hood:</strong> Military-grade AES-256 encryption, perfect
-                        forward secrecy, and zero-knowledge architecture.</div>
+                    <div class="pd-tech"><strong>Tech Stack:</strong> AES-256-GCM • X25519 ECDH • HKDF-SHA256 • SQLCipher • EncryptedSharedPreferences • Stream WebRTC • Media3 Transformer • Supabase Storage</div>
                 </div>
             </div>
         </div>
@@ -1916,24 +1930,23 @@
                 <div class="calls-left">
                     <div class="section-tag">Secure Communication</div>
                     <h2 class="section-title">Calls that stay <em>private.</em></h2>
-                    <p class="section-sub">WebRTC P2P means your calls never touch our servers. Maximum privacy, crystal
-                        clear audio.</p>
+                    <p class="section-sub">Stream WebRTC P2P with encrypted signaling. Your calls never touch our servers, and all call metadata is encrypted end-to-end.</p>
                     <div class="call-features">
                         <div class="cf-item">
                             <div class="cf-dot"></div>
-                            <span><strong>HD Video Calls</strong> — Crystal clear up to 1080p</span>
+                            <span><strong>Encrypted Signaling</strong> — SDP and ICE encrypted with conversation key</span>
                         </div>
                         <div class="cf-item">
                             <div class="cf-dot"></div>
-                            <span><strong>Screen Sharing</strong> — Share your screen securely</span>
+                            <span><strong>P2P Connection</strong> — Direct peer-to-peer, no server relay</span>
                         </div>
                         <div class="cf-item">
                             <div class="cf-dot"></div>
-                            <span><strong>Group Calls</strong> — Call multiple people at once</span>
+                            <span><strong>HD Video & Audio</strong> — Hardware-accelerated compression</span>
                         </div>
                         <div class="cf-item">
                             <div class="cf-dot"></div>
-                            <span><strong>Call Recording</strong> — Local recording, your device only</span>
+                            <span><strong>Call History</strong> — Encrypted locally with SQLCipher</span>
                         </div>
                     </div>
                 </div>
@@ -1978,17 +1991,17 @@
                 <div class="cust-card reveal reveal-d1">
                     <span class="cust-emoji">🎨</span>
                     <h3>Themes</h3>
-                    <p>Light, dark, and custom color schemes. Pick what feels right for you.</p>
+                    <p>Light, dark, and custom color schemes with Material 3 design. Pick what feels right for you.</p>
                 </div>
                 <div class="cust-card reveal reveal-d2">
                     <span class="cust-emoji">🎵</span>
                     <h3>Notification Sounds</h3>
-                    <p>Choose from curated sounds or upload your own. Your ringtone, your way.</p>
+                    <p>Choose from curated sounds or upload your own. All notification data is encrypted.</p>
                 </div>
                 <div class="cust-card reveal reveal-d3">
                     <span class="cust-emoji">👥</span>
                     <h3>Chat Backgrounds</h3>
-                    <p>Set unique wallpapers for each conversation. Make every chat feel special.</p>
+                    <p>Set unique encrypted wallpapers for each conversation. Make every chat feel special.</p>
                 </div>
             </div>
         </div>
@@ -2032,8 +2045,27 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                         </div>
-                        <div class="faq-a">No. End-to-end encryption means only you and the recipient can decrypt
-                            messages. We can't read them even if we wanted to.</div>
+                        <div class="faq-a">No. All messages are encrypted with AES-256-GCM before leaving your device. Keys are derived using X25519 ECDH and never transmitted. We can't decrypt messages even if we wanted to — it's mathematically impossible.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            <span>What encryption does GlassChat use?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                        </div>
+                        <div class="faq-a">AES-256-GCM for message encryption, X25519 ECDH for key exchange with HKDF-SHA256 derivation, SQLCipher for local database encryption, EncryptedSharedPreferences for credential storage, and per-file AES-256 keys for media encryption.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            <span>Are my media files encrypted?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                        </div>
+                        <div class="faq-a">Yes. Every media file (images, videos, voice notes, documents) is encrypted with a unique AES-256 key before upload. The file key is then encrypted with the conversation key and stored separately. Your cloud storage provider never sees plaintext content.</div>
                     </div>
 
                     <div class="faq-item">
@@ -2092,26 +2124,30 @@
             </div>
             <div class="cta-note">
                 <span>Latest Version</span>
-                <span id="latestVersion">v3.2.2.5</span>
+                <span id="latestVersion">v4.0.0</span>
             </div>
         </div>
     </section>
 
+    </main>
+
     <!-- FOOTER -->
-    <footer>
+    <footer class="site-footer" role="contentinfo">
         <div class="footer-inner">
-            <a href="#" class="footer-logo">
+            <a href="#top" class="footer-logo">
                 <div class="footer-logo-icon">
                     <img src="https://raw.githubusercontent.com/nityamkaushik/GlassChat-release/main/source/logo.png"
                         alt="GlassChat Logo">
                 </div>
                 <span>GlassChat</span>
             </a>
-            <div class="footer-copy">© 2024 GlassChat. All rights reserved. Made with ❤️ for privacy.</div>
-            <div class="footer-links">
-                <a href="#privacy-deep">Privacy Policy</a>
-                <a href="#calls">Features</a>
-            </div>
+            <p class="footer-copyright">GlassChat &copy; 2026 Team Nityam</p>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms &amp; Conditions</a>
+                <a href="#cta">Download</a>
+                <a href="mailto:support@glasschat.example.com">Support</a>
+            </nav>
         </div>
     </footer>
 
