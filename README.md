@@ -1,8 +1,6 @@
 # GlassChat — The Complete Guide to Building a Scalable Encrypted Chat Application
 
-GlassChat is a modern, real-time, offline-first multi-user chat application built for Android. It features **military-grade end-to-end encryption (AES-256-GCM, X25519 ECDH)**, encrypted local storage (SQLCipher), a stunning glassmorphic UI, real-time messaging, encrypted media sharing (images, videos, voice notes, documents), encrypted voice/video calling (WebRTC), and content-stripped push notifications.
-
-**Version 4.0.0** — Major security update with comprehensive end-to-end encryption across all data layers.
+GlassChat is a modern, real-time, offline-first multi-user chat application built for Android. It features end-to-end encryption, a stunning glassmorphic UI, real-time messaging, media sharing (images, videos, voice notes, documents), voice/video calling (WebRTC), and push notifications.
 
 This guide explains the complete architecture and step-by-step process of how to build this application **from scratch**, focusing heavily on the configuration of Cloud Services (Firebase, Supabase, OneSignal) and the end-to-end encryption layer without showing the underlying Android source code.
 
@@ -14,15 +12,15 @@ This guide explains the complete architecture and step-by-step process of how to
 | **UI Framework** | Jetpack Compose + Material 3 | Declarative UI, animations, glassmorphic themes |
 | **Authentication**| Firebase Auth | User identity and secure login |
 | **Database (Remote)**| Firebase Firestore | Real-time messaging, presence, call signaling |
-| **Database (Local)** | Room + **SQLCipher** | **Encrypted offline-first caching (AES-256)** |
-| **File Storage** | Supabase Storage | **Encrypted media files (images, videos, voice, docs)** |
-| **Encryption** | **AES-256-GCM** + **X25519 ECDH** + **HKDF-SHA256** | **End-to-end encryption** |
-| **Credential Storage** | **EncryptedSharedPreferences** | **AES-256-GCM encrypted local credentials** |
-| **Notifications** | OneSignal → FCM | **Content-stripped push notifications** |
+| **Database (Local)** | Room + **SQLCipher** | Encrypted offline-first caching (AES-256) |
+| **File Storage** | Supabase Storage | Encrypted media files (images, videos, voice, docs) |
+| **Encryption** | **AES-256-GCM** + **X25519 ECDH** + **HKDF-SHA256** | End-to-end encryption |
+| **Credential Storage** | EncryptedSharedPreferences | AES-256-GCM encrypted local credentials |
+| **Notifications** | OneSignal → FCM | Content-stripped push notifications |
 | **Image Loading** | Coil | Efficient asynchronous image rendering |
 | **Media Playback** | Media3 (ExoPlayer) | Video and audio message playback |
 | **Video Calling** | Stream WebRTC | Peer-to-peer voice & video calls |
-| **Video Compression** | Media3 Transformer | **Hardware-accelerated video compression** |
+| **Video Compression** | Media3 Transformer | HW-accelerated video compression |
 
 ---
 
