@@ -2,6 +2,26 @@
 <html lang="en">
 
 <head>
+    <script>
+        // Force trailing slash and correct repository casing on GitHub Pages
+        (function() {
+            if (window.location.hostname.endsWith('github.io')) {
+                const expectedPathPrefix = '/GlassChat-release/';
+                const currentPath = window.location.pathname;
+                if (currentPath.toLowerCase() === '/glasschat-release' || currentPath.toLowerCase() === '/glasschat-release/') {
+                    if (currentPath !== expectedPathPrefix) {
+                        window.location.replace(window.location.origin + expectedPathPrefix + window.location.search + window.location.hash);
+                    }
+                } else if (currentPath.toLowerCase().startsWith('/glasschat-release/')) {
+                    const currentPrefix = currentPath.substring(0, expectedPathPrefix.length);
+                    if (currentPrefix !== expectedPathPrefix) {
+                        const newPath = expectedPathPrefix + currentPath.substring(expectedPathPrefix.length);
+                        window.location.replace(window.location.origin + newPath + window.location.search + window.location.hash);
+                    }
+                }
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlassChat — Privacy Redefined</title>
