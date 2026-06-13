@@ -1,7 +1,7 @@
 {
-  "versionCode": 66,
-  "versionName": "4.1.1",
+  "versionCode": 67,
+  "versionName": "5.0.0",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "Inject missing config files securely"
+  "changelog": "release 5"
 }
