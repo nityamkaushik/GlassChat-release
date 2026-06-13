@@ -1,7 +1,7 @@
 {
-  "versionCode": 68,
-  "versionName": "5.0.1",
+  "versionCode": 70,
+  "versionName": "5.1.1",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "alarm fixation cinversation view model updated to refresh"
+  "changelog": "5.1.1"
 }
