@@ -1,7 +1,7 @@
 {
-  "versionCode": 70,
-  "versionName": "5.1.1",
+  "versionCode": 71,
+  "versionName": "5.2.0",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "5.1.1"
+  "changelog": "added vivdeo pip activity , added emoji sticker gif , added reactions , fixed calls , added animation to vanish mode"
 }
