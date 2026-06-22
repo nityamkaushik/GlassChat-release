@@ -1,7 +1,7 @@
 {
-  "versionCode": 77,
-  "versionName": "5.2.6",
+  "versionCode": 78,
+  "versionName": "5.2.7",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "call fixed for application"
+  "changelog": "proguard rules update"
 }
