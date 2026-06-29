@@ -1,7 +1,7 @@
 {
-  "versionCode": 87,
-  "versionName": "5.3.8",
+  "versionCode": 88,
+  "versionName": "5.4.0",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "new update"
+  "changelog": "Added the ability for users to edit their sent text messages within a 15 minute window"
 }
