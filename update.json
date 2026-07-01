@@ -1,7 +1,7 @@
 {
-  "versionCode": 91,
-  "versionName": "5.4.3",
+  "versionCode": 92,
+  "versionName": "5.5.0",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "commit to 5.4.3 to fix update issue had in 5.4.2"
+  "changelog": "reels peview loading + reply media preview"
 }
