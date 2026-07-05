@@ -1,7 +1,7 @@
 {
-  "versionCode": 95,
-  "versionName": "5.6.1",
+  "versionCode": 97,
+  "versionName": "6.0.3",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "fixed up compilation bugs"
+  "changelog": "fix gradle issues unresolved"
 }
