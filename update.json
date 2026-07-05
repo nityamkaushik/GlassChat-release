@@ -1,7 +1,7 @@
 {
-  "versionCode": 99,
-  "versionName": "6.0.5",
+  "versionCode": 100,
+  "versionName": "6.0.6",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "fixed updater rerunning commit"
+  "changelog": "changed the source of truth nd optimized features"
 }
