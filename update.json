@@ -1,7 +1,7 @@
 {
-  "versionCode": 101,
-  "versionName": "6.0.7",
+  "versionCode": 102,
+  "versionName": "6.0.8",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "perf: remove runBlocking, Thread.sleep; defer wallpaper; tune heartbeat, pager; migrate SimpleDateFormat"
+  "changelog": "fixed schema system app crash"
 }
