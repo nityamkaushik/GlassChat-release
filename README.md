@@ -11,7 +11,7 @@ This guide explains the complete architecture and step-by-step process of how to
 | **Language** | Kotlin | Primary programming language |
 | **UI Framework** | Jetpack Compose + Material 3 | Declarative UI, animations, glassmorphic themes |
 | **Authentication**| Firebase Auth | User identity and secure login |
-| **Database (Remote)**| Firebase Firestore | Real-time messaging, presence, call signaling |
+| **Database (Remote)**| Firebase Firestore + Realtime Database | Real-time messaging & presence (RTDB), conversations & call signaling (Firestore) |
 | **Database (Local)** | Room + **SQLCipher** | Encrypted offline-first caching (AES-256) |
 | **File Storage** | Supabase Storage | Encrypted media files (images, videos, voice, docs) |
 | **Encryption** | **AES-256-GCM** + **X25519 ECDH** + **HKDF-SHA256** | End-to-end encryption |
@@ -32,9 +32,9 @@ GlassChat encrypts data at every layer:
 
 | Data | Where Stored | Encryption |
 | :--- | :--- | :--- |
-| Message text, sender name/email, replies | Firestore | AES-256-GCM with conversation key |
+| Message text, sender name/email, replies | Firebase Realtime Database | AES-256-GCM with conversation key |
 | Media files (photos, videos, voice, docs) | Supabase Storage | AES-256-GCM with per-file key |
-| Call signaling (SDP, ICE candidates, names) | Firestore | AES-256-GCM with conversation key |
+| Call signaling (SDP / ICE candidates, names) | Firestore (SDP) / RTDB (ICE) | AES-256-GCM with conversation key |
 | Profile bio & phone number | Firestore | AES-256-GCM with user-local key |
 | Push notification preview | OneSignal data payload | AES-256-GCM with conversation key |
 | Conversation last message | Firestore | AES-256-GCM with conversation key |
@@ -51,7 +51,7 @@ GlassChat encrypts data at every layer:
 
 Messages without the `ENC:` prefix are treated as plaintext (pre-encryption messages). The `smartDecrypt()` function automatically detects and handles both formats.
 
-> **See also**: `changes.md` for complete encryption architecture documentation.
+> **See also**: `encryption.md` for complete encryption architecture documentation.
 
 ---
 
@@ -166,16 +166,16 @@ OneSignal handles push notification delivery. After the encryption update, OneSi
 * On login, existing keypair is loaded or a new one is generated for the device.
 
 **2. Message Encryption (Sending)**
-* Before writing to Firestore, all sensitive fields (text, senderName, senderEmail, replyTo, etc.) are encrypted with the conversation key using AES-256-GCM.
+* Before writing to Firebase Realtime Database, all sensitive fields (text, senderName, senderEmail, replyTo, etc.) are encrypted with the conversation key using AES-256-GCM.
 * Encrypted values are prefixed with `ENC:` for detection.
 
 **3. Media Encryption (Uploading)**
 * A random AES-256 key is generated per file.
 * File bytes are encrypted with this key and uploaded to Supabase.
-* The file key is encrypted with the conversation key and stored as `encryptedFileKey` in the Firestore message.
+* The file key is encrypted with the conversation key and stored as `encryptedFileKey` in the RTDB message.
 
 **4. Message Decryption (Receiving)**
-* On receiving messages from Firestore, `smartDecrypt()` detects the `ENC:` prefix and decrypts transparently.
+* On receiving messages from RTDB, `smartDecrypt()` detects the `ENC:` prefix and decrypts transparently.
 * Decrypted plaintext is stored in the local Room database for fast UI rendering.
 
 **5. Local Storage Encryption**
@@ -185,10 +185,10 @@ OneSignal handles push notification delivery. After the encryption update, OneSi
 ### Phase 6: Architecture Implementation Highlights
 
 1. **Room Database (Offline-First):** All UI reads from the encrypted local Room database (`LocalMessage` and `LocalConversation` DAOs).
-2. **Optimistic Updates:** When a message is sent, it is instantly written to Room (plaintext). Concurrently, it is encrypted and uploaded to Firestore.
-3. **Real-time Sync:** The app listens to the `/conversations/{id}/messages` Firestore collection. Changes are decrypted and saved to Room, which automatically updates the Compose UI via Flow.
-4. **Media Handling:** Media is compressed locally, encrypted with a per-file AES-256 key, uploaded to Supabase Storage, and the encrypted file key is attached to the Firestore message.
-5. **Call Signaling:** WebRTC SDP offers/answers and ICE candidates are encrypted with the conversation key before being written to Firestore call documents.
+2. **Optimistic Updates:** When a message is sent, it is instantly written to Room (plaintext). Concurrently, it is encrypted and uploaded to RTDB.
+3. **Real-time Sync:** The app listens to the `/conversations/{id}/messages` RTDB path. Changes are decrypted and saved to Room, which automatically updates the Compose UI via Flow.
+4. **Media Handling:** Media is compressed locally, encrypted with a per-file AES-256 key, uploaded to Supabase Storage, and the encrypted file key is attached to the RTDB message.
+5. **Call Signaling:** WebRTC SDP offers/answers are encrypted and written to Firestore; ICE candidates to RTDB.
 
 ---
 
@@ -196,6 +196,7 @@ OneSignal handles push notification delivery. After the encryption update, OneSi
 
 | Document | Content |
 | :--- | :--- |
-fields |
-| `firestore.rules` | Production Firestore security rules (650+ lines) |
-| `SCHEMA.md` | Firestore and Room database schema documentation |
+| `README.md` | Complete setup & architecture guide (this file) |
+| `SCHEMA.md` | Firestore, RTDB, and Room database schema documentation |
+| `encryption.md` | End-to-end encryption architecture and Room migration guide |
+| `firestore.rules` | Production Firestore security rules |
