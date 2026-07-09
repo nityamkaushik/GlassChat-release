@@ -1,7 +1,7 @@
 {
-  "versionCode": 103,
-  "versionName": "6.0.9",
+  "versionCode": 105,
+  "versionName": "6.1.2",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "update fixation"
+  "changelog": "fixed lint eror fragment 1.8.6"
 }

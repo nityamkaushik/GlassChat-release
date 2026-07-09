@@ -2,7 +2,7 @@
 
 GlassChat is a modern, real-time, offline-first multi-user chat application built for Android. It features end-to-end encryption, a stunning glassmorphic UI, real-time messaging, media sharing (images, videos, voice notes, documents), voice/video calling (WebRTC), and push notifications.
 
-This guide explains the complete architecture and step-by-step process of how to build this application **from scratch**, focusing heavily on the configuration of Cloud Services (Firebase, Supabase, OneSignal) and the end-to-end encryption layer without showing the underlying Android source code.
+This guide explains the complete architecture and step-by-step process of how to build this application **from scratch**, focusing heavily on the configuration of Cloud Services (Firebase, Supabase, Vercel FCM relay) and the end-to-end encryption layer without showing the underlying Android source code.
 
 ## 🛠️ Technology Stack
 
@@ -16,7 +16,7 @@ This guide explains the complete architecture and step-by-step process of how to
 | **File Storage** | Supabase Storage | Encrypted media files (images, videos, voice, docs) |
 | **Encryption** | **AES-256-GCM** + **X25519 ECDH** + **HKDF-SHA256** | End-to-end encryption |
 | **Credential Storage** | EncryptedSharedPreferences | AES-256-GCM encrypted local credentials |
-| **Notifications** | OneSignal → FCM | Content-stripped push notifications |
+| **Notifications** | FCM (Firebase Cloud Messaging) + Vercel relay | Content-stripped push notifications |
 | **Image Loading** | Coil | Efficient asynchronous image rendering |
 | **Media Playback** | Media3 (ExoPlayer) | Video and audio message playback |
 | **Video Calling** | Stream WebRTC | Peer-to-peer voice & video calls |
@@ -36,7 +36,7 @@ GlassChat encrypts data at every layer:
 | Media files (photos, videos, voice, docs) | Supabase Storage | AES-256-GCM with per-file key |
 | Call signaling (SDP / ICE candidates, names) | Firestore (SDP) / RTDB (ICE) | AES-256-GCM with conversation key |
 | Profile bio & phone number | Firestore | AES-256-GCM with user-local key |
-| Push notification preview | OneSignal data payload | AES-256-GCM with conversation key |
+| Push notification preview | FCM relay data payload | AES-256-GCM with conversation key |
 | Conversation last message | Firestore | AES-256-GCM with conversation key |
 | All credentials & cached keys | Device SharedPreferences | EncryptedSharedPreferences (AES-256) |
 | Local chat database | Device SQLite | SQLCipher (AES-256-CBC) |
@@ -65,7 +65,7 @@ Messages without the `ENC:` prefix are treated as plaintext (pre-encryption mess
 * Enable Kotlin Symbol Processing (KSP) for Room database support.
 
 **2. Configure Dependencies**
-* Add dependencies in `build.gradle.kts` for Compose, Navigation, Room, Coil, ExoPlayer, Firebase BoM, Supabase BoM, OneSignal, SQLCipher, and `security-crypto`.
+* Add dependencies in `build.gradle.kts` for Compose, Navigation, Room, Coil, ExoPlayer, Firebase BoM, Supabase BoM, SQLCipher, and `security-crypto`.
 * Implement a `local.properties` setup to securely load API keys without exposing them in version control.
 
 ---
@@ -131,31 +131,37 @@ Go to the **SQL Editor** in Supabase and run the complete SQL from `backend_depl
 
 ---
 
-### Phase 4: OneSignal Configuration (Content-Stripped Push Notifications)
+### Phase 4: FCM Push Notification Relay (Content-Stripped)
 
-OneSignal handles push notification delivery. After the encryption update, OneSignal servers **never see message content** — the push body is always "New message" with an encrypted preview in the data payload.
+GlassChat uses a **Vercel serverless relay** to send FCM push notifications. The app sends POST requests to `https://glass-chat-rho.vercel.app/send`, which forwards them to Firebase Cloud Messaging (FCM). The Vercel relay holds the FCM server credentials — they never appear in the APK.
 
-**1. Obtain FCM Credentials for OneSignal**
-* In the Firebase Console, go to **Project Settings > Cloud Messaging**.
-* Under **Firebase Cloud Messaging API (V1)**, ensure it is enabled.
-* Go to the **Service accounts** tab, click **Generate new private key**.
+**1. Vercel Relay Deployment**
 
-**2. Setup OneSignal App**
-* Go to the [OneSignal Dashboard](https://onesignal.com/) and create a new App/Website.
-* Select **Google Android (FCM)**.
-* Upload the Firebase Service Account JSON file.
+The relay source code is in `firebase-messaging-backend/api/send.js`. To deploy your own:
 
-**3. App Keys & Routing**
-* Navigate to **Settings > Keys & IDs** in OneSignal.
-* Copy the **OneSignal App ID** and **REST API Key**.
-* Place both values in Android `local.properties` as `ONESIGNAL_APP_ID` and `ONESIGNAL_REST_API_KEY`.
-* This keeps the project on Firebase Spark, but the REST key can be exposed if the APK is decompiled.
+```bash
+cd firebase-messaging-backend
+vercel --prod
+```
 
-**4. Notification Privacy**
-* When User A sends a message, the push contains `contents: "New message"` (generic).
-* Actual text is in `data.encryptedPreview`, encrypted with the conversation key.
-* The receiver's device decrypts the preview locally for display.
-* `collapse_id: conversationId` groups notifications per chat thread.
+Set these environment variables in Vercel:
+- `FIREBASE_PROJECT_ID` — Your Firebase project ID
+- `FIREBASE_CLIENT_EMAIL` — Firebase service account client email
+- `FIREBASE_PRIVATE_KEY` — Firebase service account private key (with real newlines)
+- `API_KEY` — Shared secret the app sends as `x-api-key` header
+
+**2. Android Configuration**
+In `local.properties`:
+```properties
+FCM_BACKEND_URL=https://your-relay.vercel.app/send
+FCM_BACKEND_API_KEY=your_shared_api_key
+```
+
+**3. Notification Privacy**
+* When User A sends a message, the app sends a POST to the Vercel relay with `tokens`, `title`, `body`, `data` (including `encryptedPreview`).
+* The relay forwards to FCM. Neither the relay nor FCM can decrypt message content.
+* `collapse_id` groups notifications per conversation thread.
+* `ttl` controls how long FCM stores undelivered messages.
 
 ---
 
