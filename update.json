@@ -1,7 +1,7 @@
 {
-  "versionCode": 106,
-  "versionName": "6.1.3",
+  "versionCode": 107,
+  "versionName": "6.1.4",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "fixed camera back invertion"
+  "changelog": "fix android req"
 }
