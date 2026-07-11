@@ -1,7 +1,7 @@
 {
-  "versionCode": 107,
-  "versionName": "6.1.4",
+  "versionCode": 108,
+  "versionName": "6.1.5",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "fix android req"
+  "changelog": "fix: dismiss system notification when chat is opened or connection accepted"
 }
