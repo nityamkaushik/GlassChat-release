@@ -1,7 +1,7 @@
 {
-  "versionCode": 109,
-  "versionName": "6.1.6",
+  "versionCode": 110,
+  "versionName": "6.2.0",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": " recovery password system — mandatory at signup, persisted pending pw, instant prompt, removes old PIN/export flow"
+  "changelog": "connection profile page, sort controls, and notification suppression  gate notification suppression on foreground state and fix lifecycle tracking"
 }
