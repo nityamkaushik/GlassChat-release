@@ -1,7 +1,7 @@
 {
-  "versionCode": 108,
-  "versionName": "6.1.5",
+  "versionCode": 109,
+  "versionName": "6.1.6",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "fix: dismiss system notification when chat is opened or connection accepted"
+  "changelog": " recovery password system — mandatory at signup, persisted pending pw, instant prompt, removes old PIN/export flow"
 }
