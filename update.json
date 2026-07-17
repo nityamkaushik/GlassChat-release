@@ -1,7 +1,7 @@
 {
-  "versionCode": 111,
-  "versionName": "6.2.1",
+  "versionCode": 112,
+  "versionName": "6.2.2",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "fixed sudden crash of application and new greeting row when friends connected introduction"
+  "changelog": "gradle 6.2.2"
 }
