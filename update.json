@@ -1,7 +1,7 @@
 {
-  "versionCode": 110,
-  "versionName": "6.2.0",
+  "versionCode": 111,
+  "versionName": "6.2.1",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "connection profile page, sort controls, and notification suppression  gate notification suppression on foreground state and fix lifecycle tracking"
+  "changelog": "fixed sudden crash of application and new greeting row when friends connected introduction"
 }
