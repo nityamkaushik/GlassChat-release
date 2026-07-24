@@ -1,7 +1,7 @@
 {
-  "versionCode": 116,
-  "versionName": "6.3.3",
+  "versionCode": 117,
+  "versionName": "6.3.4",
   "apkUrl": "https://nityamkaushik.github.io/GlassChat-release/app-release.apk",
   "mandatory": false,
-  "changelog": "finally notication chat opened bg"
+  "changelog": "introduction to call banner _ fixed message permission fixed banner position and top bar _ resume call introducntion"
 }
